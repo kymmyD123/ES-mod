@@ -97,6 +97,7 @@ label SMVIJPNNN_label_1:
     $ new_chapter(1, u"День превый.")
     $ persistent.sprite_time = 'day'
     $ day_time()
+	"ИСПРАВИТЬ БАГ С ПЕРСИСТЕНТОМ!!
     play ambience ambience_camp_entrance_day fadein 2
     scene black
     "Мне снился хороший сон. Мы с Лерой плавали в озере."
