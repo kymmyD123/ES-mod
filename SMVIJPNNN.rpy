@@ -21,6 +21,13 @@
     
     $ d1_Lera_diner_ploho = False
     $ Krst_comfort_SMVIJPNNN = 0
+    
+    image Kristy normal pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_sp_1.png"), im.matrix.tint(0.94, 0.82, 1.0) )
+    image Kristy angry pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_1_angry.png"), im.matrix.tint(0.94, 0.82, 1.0) )
+    image Kristy smile pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/4.png"), im.matrix.tint(0.94, 0.82, 1.0) )
+    image Kristy shy pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_1_shy.png"), im.matrix.tint(0.94, 0.82, 1.0) )
+   
+   
    
 label SMVIJPNNN_label_1:
     $ prolog_time()
@@ -596,21 +603,33 @@ label SMVIJPNNN_label_1:
     Ler_SM "К счастью мне знакомиться не придется, ведь я невидима!"
     "Сказала Лера с улыбкой и мы подошли к той пионерке."
     me "Привет!"
+    show Kristy normal pioneer sunset at center with dissolve
     Vlu_SM "Привет."
     "Девочка была грустной и не особо хотела идти на контакт."
     me "Меня Семен зовут, а тебя?"
     Vlu_SM "Кристина."
+    "В воздухе повисла неловкая пауза."
+    "Новая знакомая первой решила нарушить окружающую нас тишину."
+    hide Kristy normal pioneer sunset
+    show Kristy angry pioneer sunset
     Vlr_SM "А подружку то свою не представил!"
     th "Подружку?! {w}Стоп, то есть она хочет сказать, что видит Леру?! {w}Как это понимать?!"
     "Мы с Лерой переглянулись удивленно, я хотел ее представить, но Лера меня опередила."
     Ler_SM "Привет, я Лера."
+    hide Kristy angry pioneer sunset
+    show Kristy normal pioneer sunset
     Vlr_SM "Привет, я Кристина."
+    hide Kristy normal pioneer sunset
+    show Kristy smile pioneer sunset
     "Девочки заулыбались друг другу."
     "А вот и мой желудок дал о себе знать."
     Ler_SM "Проголодался?"
     me "Да, немного, скоро должен быть ужин."
+    hide Kristy smile pioneer sunset
+    show Kristy normal pioneer sunset
     Vlr_SM "А вы когда приехали, я вас на обеде не видела?"
     me "Да вот пару часов назад..."
+    Vlr_SM "Понятно..."
     play sound sfx_dinner_horn_processed
     "Неуспел я договорить, как меня прервал горн призывающий к ужину."
     me "Мои молитвы были услышаны."
@@ -737,12 +756,14 @@ label SMVIJPNNN_label_1:
         "Я пришел на пляж и увидел Кристину. {w}Она плакала."
         "Заметив меня Кристина, потихоньку начала успокаиваться, но глаза были все равно заплаканные."
         "Я подошел к ней и спросил."
+        show Kristy shy pioneer sunset with dissolve
         me "Кристина, что случилось, почему ты плачешь?"
         Vlr_SM "Неважно, Семен!"
         me "Вожатая спрашивала про тебя, сказала чтобы ты зашла к ней после ужина."
         Vlr_SM "Зачем?"
         me "Не знаю, я не стал спрашивать."
         Vlr_SM "Хорошо, тогда пойду к ней."
+        hide Kristy shy pioneer sunset with dissolve
         "Кристина встала и медленно пошла в сторону домика вожатой."
         "Я остался на едине с самим собой."
         "Теперь можно подумать о жизни, поразмышлять, подвести итоги прошедшего дня."
@@ -786,6 +807,7 @@ label SMVIJPNNN_label_1:
         "Мы пришели на пляж и увидели Кристину. {w}Она плакала."
         "Заметив нас Кристина, потихоньку начала успокаиваться, но глаза были все равно заплаканные."
         "Мы подошли к ней и спросили."
+        show Kristy shy pioneer sunset with dissolve
         me "Кристина, что случилось, почему ты плачешь?"
         Ler_SM "Что случилось? Тебя кто-то обидел?"
         Vlr_SM "Все в порядке ребят, я просто по дому скучаю ничего особенного."
@@ -796,6 +818,7 @@ label SMVIJPNNN_label_1:
         Ler_SM "Семен, я ее провожу, пойдешь с нами?"
         me "Я пожалуй посижу, подумаю о сегодняшнем дне."
         Ler_SM "Хорошо, я дома буду ждать."
+        hide Kristy shy pioneer sunset with dissolve
         play music nobody_secret fadein 2
         "Девочки ушли, а я сел на пляж и начал думать."
         $ set_mode_nvl()
@@ -867,12 +890,14 @@ label SMVIJPNNN_label_1:
                 "Повысил голос я с целью, чтобы мои слова достигли её. Она явно была в своих мылсях, так что могла меня и не услышать."
                 "Она обернулась и, постояв несколько секунд в раздумьях, пошла на встречу ко мне. {w}Я зашагал к ней тоже."
                 "Вот мы и в десяти шагах друг от друга. {w}Кристина остановилась."
+                show Kristy angry pioneer sunset with dissolve
                 Vlr_SM "Привет. {w}Тебе что-то нужно?"
                 me "Добрый вечер. Ты не видела Леру?"
                 "Я сделал еще шаг к ней, но она взглядом дала понять, что мне дистанцию сокращать не стоит."
                 Vlr_SM "Да, видела. Она хотела пройтись до сцены и обратно, я показала ей дорогу. {w}Она уже должна возвращаться."
                 Vlr_SM "Вот, кстати, и она."
                 "Кристина указала мне за спину."
+                hide Kristy angry pioneer sunset with dissolve
                 "Обернувшись, я увидел Леру, смотрящую в нашу сторону."
                 "Увидев меня Лера пошла на встречу к нам."
                 "Лера подошла ко мне и поникла взглядом."
@@ -895,7 +920,7 @@ label SMVIJPNNN_label_1:
                 Ler_SM "Тяжелый день, не так ли?"
                 me "Да, полностью с тобой согласен. {w}А зачем ты к сцене ходила?"
                 Ler_SM "Да так, интересно было..."
-                $ prolog_time()
+                $ night_time()
                 $ persistent.sprite_time = 'night'
                 play ambience ambience_int_cabin_night fadeout 2 fadein 1
                 scene int_house_of_mt_night with dissolve
