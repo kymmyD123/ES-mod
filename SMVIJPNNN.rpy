@@ -1,6 +1,6 @@
 ﻿init:
 
-    $ mods["SMVIJPNNN_label_1"]=u"Вставьте имя сами."
+    $ mods["SMVIJPNNN_label_1"]=u"Совёнок для двоих."
     
     $ Ler_SM = Character(u'Лера', color="99FF99", what_color="E2C778")
     
@@ -13,9 +13,17 @@
     image camp-s-frombus = "mods/SMVIJPNNN/image/bg/camp-s-frombus.jpg"
     image 18-disclaimer = "mods/SMVIJPNNN/image/bg/18-disclaimer.jpg"
     image int_dining_hall_people_sunset = "mods/SMVIJPNNN/image/bg/int_dining_hall_people_sunset.jpg"
+    image metro_dream = "mods/SMVIJPNNN/image/bg/metro_dream.jpg"
     
     $ bus_engine = "mods/SMVIJPNNN/music/bus_engine.mp3"
     $ nobody_secret = "mods/SMVIJPNNN/music/nobody_secret.mp3"
+    $ Sakura = "mods/SMVIJPNNN/music/Sakura.mp3"
+    $ homyak_theme = "mods/SMVIJPNNN/music/homyak_theme.mp3"
+    $ soft_horn = "mods/SMVIJPNNN/music/soft_horn.mp3"
+    $ spring = "mods/SMVIJPNNN/music/spring.mp3"
+    $ silent_garden = "mods/SMVIJPNNN/music/silent_garden.mp3"
+    $ Saya = "mods/SMVIJPNNN/music/Saya.mp3"
+    
     $ ES_girls_comfort_points_SMVIJ = 0
     $ ES_Lera_comfort_points_SMVIJ = 0
     
@@ -26,10 +34,14 @@
     image Kristy angry pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_1_angry.png"), im.matrix.tint(0.94, 0.82, 1.0) )
     image Kristy smile pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/4.png"), im.matrix.tint(0.94, 0.82, 1.0) )
     image Kristy shy pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_1_shy.png"), im.matrix.tint(0.94, 0.82, 1.0) )
+    
+
+
    
    
    
 label SMVIJPNNN_label_1:
+  
     $ prolog_time()
     play music music_list["i_dont_blame_you"] fadein 2
     window hide 
@@ -241,6 +253,7 @@ label SMVIJPNNN_label_1:
     sl "Да, конечно. Мы подождем тебя здесь."
     me "Спасибо. Я постараюсь быстрее."
     "Я развернулся и проследил, чтобы Лера пошла прямо за мной."
+    play music soft_horn fadein 2
     scene ext_bus with dissolve
     "Как только мы второй раз пересекли ворота, я пошел в автобус."
     "Лера молча шла за мной."
@@ -270,6 +283,7 @@ label SMVIJPNNN_label_1:
     "Лера говорит это с натянутой улыбкой, но я прекрасно вижу, что ей не легко справиться с подобным."
     me "Ну да..."
     "Я схватил её за руку и потащил из автобуса."
+    stop music fadeout 2 
     scene ext_camp_entrance_day with dissolve
     $ renpy.pause (1.5)
     scene ext_clubs_day with dissolve
@@ -502,6 +516,7 @@ label SMVIJPNNN_label_1:
     "У Леры терпение вышло."
     Ler_SM "Ну и что ты хочешь мне сказать? Что ты мне расскажешь?"
     me "Хорошо, присядь. Разговор будет долгим."
+    play music spring fadein 2
     $ set_mode_nvl()
     me "Помнишь, я еще дома тебе говорил про игру Бесконечное лето? {w}Так вот, мы попали прямо в игру. Сейчас кратко расскажу сюжет."
     me "Главный герой игры — одинокий молодой человек Семён. Он живёт за счёт случайных фрилансовых заказов и проводит большую часть своего времени в интернете на анонимных имиджбордах."
@@ -518,6 +533,7 @@ label SMVIJPNNN_label_1:
     me "Лера, мы со всем разберемся, я тебе обещаю."
     "Я хотел взять Леру за руку, но не успел. Она приложила их к лицу и начала плакать."
     me "Ну Лера, прекрати."
+    stop music fadeout 2
     play ambience ambience_camp_center_evening fadeout 2 fadein 1
     play sound sfx_bush_leaves
     $ set_mode_adv()
@@ -559,7 +575,7 @@ label SMVIJPNNN_label_1:
     me "АЛИСА!" with hpunch
     show us normal pioneer far at cright
     show dv angry pioneer far at cleft
-    dv "Что? Надо быть внимательнее!. {w}Да и вообще, откуда ты моё имя знаешь?"
+    dv "Что? Надо быть внимательнее! {w}Да и вообще, откуда ты моё имя знаешь?"
     me "Услышал, пока вы с Ульяной шли сюда."
     show dv normal pioneer far at cleft
     dv "Ладно, бывай, Дурачелло."
@@ -781,8 +797,8 @@ label SMVIJPNNN_label_1:
         "Может у нее есть какие-то свехспособности. Или она создатель этого лагеря."
         "Не знаю, завтра надо будет с этим разобраться."
         "И все таки как же тут красиво."
-        "Сидя за экраном монитора, я никогда бы не осознал, настоящую красоту этого лагеря."
-        "Даже возвращаться назад особо не хочется, но на 7 день меня это и ждет."
+        "Сидя за экраном монитора, я никогда бы не осознал настоящую красоту этого лагеря."
+        "Даже возвращаться назад особо не хочется, но на седьмой день меня это и ждет."
         "Это меня очень печалило."
         "Завтра я должен встретиться с Мику, Виолой, Женей."
         "Виола начнет меня соблазнять, как же поступить."
@@ -810,7 +826,7 @@ label SMVIJPNNN_label_1:
         show Kristy shy pioneer sunset with dissolve
         me "Кристина, что случилось, почему ты плачешь?"
         Ler_SM "Что случилось? Тебя кто-то обидел?"
-        Vlr_SM "Все в порядке ребят, я просто по дому скучаю ничего особенного."
+        Vlr_SM "Все в порядке ребят, я просто по дому скучаю, ничего особенного."
         Ler_SM "Тебя кстати вожатая искала, попросила зайти к ней после ужина."
         Vlr_SM "А что она хочет?"
         me "Мы не спрашивали. Ничего особенного, наверное хочет узнать почему ты не ужинала с нами вместе."
@@ -834,8 +850,8 @@ label SMVIJPNNN_label_1:
         "Может у нее есть какие-то свехспособности. Или она создатель этого лагеря."
         "Не знаю, завтра надо будет с этим разобраться."
         "И все таки как же тут красиво."
-        "Сидя за экраном монитора, я никогда бы не осознал, настоящую красоту этого лагеря."
-        "Даже возвращаться назад особо не хочется, но на 7 день меня это и ждет."
+        "Сидя за экраном монитора, я никогда бы не осознал настоящую красоту этого лагеря."
+        "Даже возвращаться назад особо не хочется, но на седьмой день меня это и ждет."
         "Это меня очень печалило."
         "Завтра мы должены встретиться с Мику, Виолой, Женей."
         "Виола начнет меня соблазнять, я уже знаю что делать."
@@ -876,6 +892,7 @@ label SMVIJPNNN_label_1:
         "Но я просто не могу остаться здесь, зная, что Лера гуляет где-то одна."
         menu:
             "Пойти искать Леру":
+                $ ES_Lera_comfort_points_SMVIJ += 1
                 "До отбоя еще есть время. Я, пожалуй, пойду посмотрю, что с ней."
                 play ambience ambience_camp_center_evening fadeout 2 fadein 1
                 scene ext_house_of_mt_sunset with dissolve
@@ -947,6 +964,7 @@ label SMVIJPNNN_label_1:
                 mt "Ну тогда переодевайся и в кровать. {w}А я пока пойду прогуляюсь. Мало ли кто не дома, а до сих пор слоняется по улице."
                 hide mt with dissolve
                 "Ольга Дмитриевна положила пакет с непонятным содержимым и удалилась."
+                play music silent_garden fadein 2
                 Ler_SM "Фух. Так будет легче."
                 "Улыбнулась Лера и встала с кровати."
                 me "Ты куда на ночь глядя?!"
@@ -972,6 +990,8 @@ label SMVIJPNNN_label_1:
                 "Я переоделся и лег в кровать рядом с Лерой."
                 "Я, как обычно, закинул на неё руку и слегка приобнял."
                 "Лера прижалась ко мне плотнее. {w}Вот так Морфей и забрал нас."
+                stop music fadeout 2
+                stop ambience fadeout 2
                 
             "Остаться в домике":
                 "Ну я не думаю, что она далеко ушла. Думаю, стоит подождать её немного."
@@ -1008,13 +1028,14 @@ label SMVIJPNNN_label_1:
                 me "А ведь она могла тебя пришибить случайно. {w}Будь аккуратней."
                 Ler_SM "Ой, буду стараться."
                 "Сказала Лера с нотками сарказма."
+                play music silent_garden fadein 2
                 me "Куда ходила?"
                 Ler_SM "К сцене."
                 th "И что она там забыла?"
                 me "И что ты там забыла?"
                 "Решил повторить я свой вопрос, вот только на этот раз вслух."
                 Ler_SM "Да так, интересно было..."
-                $ prolog_time()
+                $ night_time()
                 $ persistent.sprite_time = 'night'
                 play ambience ambience_int_cabin_night fadeout 2 fadein 1
                 scene int_house_of_mt_night with dissolve
@@ -1055,7 +1076,8 @@ label SMVIJPNNN_label_1:
                 "Я переоделся и лег в кровать рядом с Лерой."
                 "Я, как обычно, закинул на неё руку и слегка приобнял."
                 "Лера прижалась ко мне плотнее. {w}Вот так Морфей и забрал нас."
-                
+                stop music fadeout 2
+                stop ambience fadeout 2
                 
     else:
         th "Кстати, скоро ли она вернется?"
@@ -1091,13 +1113,14 @@ label SMVIJPNNN_label_1:
         Ler_SM "Ты так говоришь, как будто я беремена."
         "Лера залилась кокетливым смехом."
         th "Общение с Кристиной явно пошло ей на пользу."
+        play music silent_garden fadein 2
         me "Так что с Кристиной? Почему она плакала?"
         Ler_SM "Она мне так и не сказала, я пыталась узнать, но она постоянно меняла тему."
         me "Вот оно как... {w}А что ты так долго?"
         Ler_SM "А? {w}Да она мне места показала красивые. Ты их уже наверняка знаешь, а вот для меня эти красоты в новинку."
         me "И что она тебе показала?"
         Ler_SM "Много чего. {w}Ну, например..."
-        $ prolog_time()
+        $ night_time()
         $ persistent.sprite_time = 'night'
         play ambience ambience_int_cabin_night fadeout 2 fadein 1
         scene int_house_of_mt_night with dissolve
@@ -1138,6 +1161,37 @@ label SMVIJPNNN_label_1:
         "Я переоделся и лег в кровать рядом с Лерой."
         "Я, как обычно, закинул на неё руку и слегка приобнял."
         "Лера прижалась ко мне плотнее. {w}Вот так Морфей и забрал нас."
+        stop music fadeout 2
+        stop ambience fadeout 2
+        
+    if ES_Lera_comfort_points_SMVIJ >= ES_girls_comfort_points_SMVIJ:
+        play music Saya fadein 2
+        $ prolog_time()
+        scene black with dissolve
+        "Мне снился сон..."
+        $ renpy.pause (1.5)
+        scene metro_dream with dissolve
+        show prologue_dream
+        "Я еду в вагоне. {w}Вокруг много людей."
+        "Я вижу знакомое мне лицо. {w}Это Кристина."
+        "Она плачет. {w}Я подошел к ней."
+        me "Кристина, что случилось? Почему ты плачешь?"
+        Vlr_SM "Я застряла здесь."
+        me "Что ты имеешь в виду?"
+        Vlr_SM "Я не могу отсюда выйти! {w}Здесь просто нет выхода."
+        me "Не понимаю о чем ты говоришь."
+        play sound sfx_scary_sting
+        show Kristy angry pioneer sunset:
+            yalign 0.5 
+            zoom 2
+            
+        Vlr_SM "Я в ловушке. Помоги мне."
+        hide prologue_dream
+        show blink
+        scene black with dissolve
+        hide blink
+        stop music fadeout 2
+        
         
 
     jump SMVIJPNNN_day2_label1   
