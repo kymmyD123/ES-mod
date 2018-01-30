@@ -1,8 +1,29 @@
 ﻿init:
     image ext_warehouse_day = "mods/SMVIJPNNN/image/bg/ext_warehouse_day.jpg"
     image int_warehouse_day = "mods/SMVIJPNNN/image/bg/int_warehouse_day.png"
+    image lineup = "mods/SMVIJPNNN/image/cg/day2/d2_lineup.jpg"
+    
+    $ Ler_SM = Character(u'Лера', color="99FF99", what_color="E2C778")
+    
+    $ Vlr_SM = Character(u'Кристина', color="660066", what_color="E2C778")
+    
+    $ bus_engine = "mods/SMVIJPNNN/music/bus_engine.mp3"
+    $ nobody_secret = "mods/SMVIJPNNN/music/nobody_secret.mp3"
+    $ Sakura = "mods/SMVIJPNNN/music/Sakura.mp3"
+    $ homyak_theme = "mods/SMVIJPNNN/music/homyak_theme.mp3"
+    $ soft_horn = "mods/SMVIJPNNN/music/soft_horn.mp3"
+    $ spring = "mods/SMVIJPNNN/music/spring.mp3"
+    $ silent_garden = "mods/SMVIJPNNN/music/silent_garden.mp3"
+    $ Saya = "mods/SMVIJPNNN/music/Saya.mp3"
+    
+    $ d1_Lera_diner_ploho = False
     $ d2_MT_palevo = False
-
+    
+    image Kristy normal pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_sp_1.png"), im.matrix.tint(0.94, 0.82, 1.0) )
+    image Kristy angry pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_1_angry.png"), im.matrix.tint(0.94, 0.82, 1.0) )
+    image Kristy smile pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/4.png"), im.matrix.tint(0.94, 0.82, 1.0) )
+    image Kristy shy pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_1_shy.png"), im.matrix.tint(0.94, 0.82, 1.0) )
+    
 label SMVIJPNNN_day2_label1:
     $ backdrop = "days"
     $ new_chapter(2, u"День второй.")
@@ -42,7 +63,7 @@ label SMVIJPNNN_day2_label1:
     play sound sfx_open_door_mines_metal
     scene int_warehouse_day with dissolve
     extend " Бл*ть, как же громко."
-    "Склад пердставлял из себя тоже, что я и видел в игре, только пыли слегка больше."
+    "Склад представлял из себя тоже, что я и видел в игре, только пыли слегка больше."
     "Благо я уже знаю, что да где находится, мне не составило труда найти одежду для Леры в кротчайшие сроки."
     "Я взял для неё полный комплект одежды."
     th "Тут нельзя долго оставаться, надо бы убегать отсюда."
@@ -131,4 +152,141 @@ label SMVIJPNNN_day2_label1:
             
     
     "И да, я угадал. Лера уже натягивала джинсы на себя."
+    play music spring fadein 2
+    me "Доброе утро, а я тебе за одеждой сходил."
+    "Сказал я с улыбкой."
+    Ler_SM "Доброе утро, спасибо."
+    th "Как же она прекрасна. {w}Ее растрепанные волосы, заспанный вид, она очень красиво выглядит в солнечных лучах, пробивающихся через окно."
+    me "Ты очень прекрасно выглядишь!"
+    if d1_Lera_diner_ploho:
+        Ler_SM "Ага, спасибо."
+        "Она сказала это как-то с обидой. Почему же? Чем я её обидел? Чёрт!"
+        me "Лер, все хорошо?"
+        Ler_SM "Абсолютно, просто я еще не проснулась."
+        "Что же случилось, блин."
+        "Я решил разобраться с этом потом, ведь скоро линейка."
+    else:
+        Ler_SM "Спасибо, Сенечка."
+        "Она покраснела."
+        me "Как ты спала? Что тебе снилось?"
+        "Лера задумчиво посмотрела на меня и её настроение переменилось. {w}Она стала грустной и все время смотрела в сторону."
+        Ler_SM "Я не помню, извини."
+        th "Она что-то скрывает, ладно."
+        "Я не стал её допрашивать, ведь она только проснулась, да и делать этого особо не хотелось, поэтому я сказал."
+        
+    me "Ладно, пойдем на линейку, опоздание неприемлимо."
+    Ler_SM "Линейку? Ну пойдем."    
+    scene ext_house_of_mt_day with dissolve
+    $ renpy.pause(1)
+    scene ext_houses_day with dissolve
+    stop music fadeout 4
+    $ renpy.pause (1)
+    scene ext_square_day with dissolve
+    me "Вот мы и пришли."
+    "Сказал я шепотом, чтобы другие пионеры не услышали."
+    Ler_SM "Ага, пришли."
+    "Я решил молчать далее, так как было бы глупо если бы меня заметили разговаривающим с самим собой."
+    "А вот и Ольга Дмитриевна."
+    show mt normal pioneer at center with dissolve
+    mt "Итак пионеры, начнем линейку."
+    mt "Сегодня у нас в планах..."
+    "Я не стал её слушать, ведь я итак знаю что мне делать в этом лагере."
+    scene lineup with dissolve
+    $ set_mode_nvl()
+    "Меня мучало много вопросов. {w}Один из них - это почему Кристина видит Леру, а остальные нет."
+    "Ответ на этот вопрос так и не найден, а будет ли вообще?"
+    "Так же я не понимал, что происходит с Лерой, ей вроде все нравилось в лагере."
+    "С ней надо поговорить, иначе вообще потеряю её."
+    "Мои размышления прервал звук призывающий к завтраку."
+    $ set_mode_adv()
+    play sound sfx_dinner_horn_processed
+    scene ext_square_day with dissolve
+    show mt normal pioneer at center with dissolve
+    mt "Вот, я как раз таки закончила говорить."
+    mt "А теперь все на завтрак!"
+    scene ext_dining_hall_away_sunset with dissolve
+    $ renpy.pause (1)
+    scene ext_dining_hall_near_sunset with dissolve
+    show dv angry pioneer far at cleft with dissolve
+    show us normal pioneer far at cright with dissolve
+    dv "Ну что, вот ты и нашелся, Дурачелло."
+    dv "Сейчас ты у меня получишь за вчерашнее!"
+    show us surp2 pioneer far at cright with dissolve
+    us "Алиса, давай не будем сейчас, ведь мы завтрак можем пропустить, а я очень голодная."
+    dv "Нет уж, Уль, он сейчас мигом будет просить о пощаде."
+    "Я не потерплю подобного в мой адрес!"
+    Ler_SM "Семён, спокойнее!"
+    menu:
+        "Устроить им взбучку":
+            show dv angry pioneer far at cleft with dissolve
+            show us normal pioneer far at cright with dissolve
+            me "Ну держись, я тебе сейчас..."
+            show sl serious pioneer far center with dissolve
+            sl "Что это тут происходит?"
+            sl "Двачевская, опять ты?!"
+            sl "Семен, иди кушай, я с ними разберусь!"
+            
+        "Пройти мимо сделав вид, что незаметил":
+            show dv angry pioneer far at cleft with dissolve
+            show us normal pioneer far at cright with dissolve
+            "А смысл реагировать, проблем не хочется."
+            "Мы с Лерой прошли мимо и она толкнула плечом Алису."
+            dv "Ну держись, сейчас ты получишь!"
+            "Она хотела было накинуться на меня, но тут знакомый голос меня спас."
+            sl "Двачевская! Что ты делаешь?"
+            show dv shocked  pioneer far at cleft with dissolve
+            show us surprise pioneer far at cright with dissolve
+            show sl serious pioneer far center  with dissolve
+            sl "Семён иди кушай, я с ней поговорю."
+            
+    
+    me "Хорошо, спасибо Славя."
+    dv "Я тебе ещё припомню..."
+    play ambience ambience_dining_hall_full fadeout 2 fadein 1
+    scene int_dining_hall_people_sunset with dissolve
+    "Её слова растворились, позади меня."
+    Ler_SM "Потом мне еду принесёшь, я постою рядом, пока ты кушаешь."
+    me "Обязательно Лера, обязательно."
+    "Я взял поднос и начал выискивать столик."
+    "Свободный оказался лишь рядом с Кристиной."
+    show Kristy smile pioneer far at cleft with dissolve
+    Vlr_SM "Привет, ребята."
+    me "Привет, Кристя."
+    "Мы произнесли это вдвоем."
+    Vlr_SM "Лера, что стоишь, возьми стул и присаживайся с нами."
+    Ler_SM "Нет, я постою."
+    me "Потом с тобой поговорим, Кристина."
+    show Kristy normal pioneer far at cleft with dissolve
+    Vlr_SM "А о чем?"
+    Ler_SM "У меня есть, одна проблема, я думаю ты это имел в виду, Семён."
+    Vlr_SM "Хорошо, я выслушаю вас позже."
+    "Завтрак кончился и я первый вышел из столовой. {w}Девочки шли позади и болтали о своём."
+    play ambience ambience_camp_center_evening fadeout 2 fadein 1
+    scene ext_dining_hall_near_sunset
+    show mt normal pioneer far at center with dissolve
+    show Kristy normal pioneer far at cleft with dissolve
+    th "Она держит обходной, значит мне предстоит знакомство с остальными жителями."
+    mt "Привет, Семён. У меня для тебя задание."
+    me "Здравствуйте Ольга Дмитриевна. Да я готов ко всему."
+    "Я сказал улыбаясь и вожатая тоже начала улыбаться."
+    show mt smile pioneer far at center with dissolve
+    mt "Ничего такого, просто обходной лист, ты должен его пройти как можно быстрее!"
+    me "Вас понял, будет сделано."
+    mt "Постарайся пройти до обеда, а то голодный будешь потом ходить."
+    show mt angry pioneer far at center with dissolve
+    mt "А ты Кристина, помнишь что я говорила на линейке?"
+    show Kristy shy pioneer far at cleft with dissolve
+    Vlr_SM "Да."
+    mt "Иди выполняй!"
+    show Kristy smile pioneer far at cleft with dissolve
+    Vlr_SM "Хорошо."
+    "Нотка грусти прозвучала в ее ответе."
+    mt "Все идите ребята, не смею задерживать вас."
+    scene ext_houses_day with dissolve
+    show Kristy normal pioneer far at cleft with dissolve
+    Ler_SM "Ладно Семён, иди лист проходи, а я с Кристей пойду."
+    show Kristy shy pioneer far at cleft with dissolve
+    me "Хорошо, удачи вам девочки."
+    Vlr_SM "И тебе удачи, Семён."
+    
     return
