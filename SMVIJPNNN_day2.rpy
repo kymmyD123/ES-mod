@@ -16,6 +16,8 @@
     $ silent_garden = "mods/SMVIJPNNN/music/silent_garden.mp3"
     $ Saya = "mods/SMVIJPNNN/music/Saya.mp3"
     
+    $ ES_Alisa_comfort_points_SMVIJ = 0
+    
     $ d1_Lera_diner_ploho = False
     $ d2_MT_palevo = False
     
@@ -204,9 +206,9 @@ label SMVIJPNNN_day2_label1:
     show mt normal pioneer at center with dissolve
     mt "Вот, я как раз таки закончила говорить."
     mt "А теперь все на завтрак!"
-    scene ext_dining_hall_away_sunset with dissolve
+    scene ext_dining_hall_away_day with dissolve
     $ renpy.pause (1)
-    scene ext_dining_hall_near_sunset with dissolve
+    scene ext_dining_hall_near_day with dissolve
     show dv angry pioneer far at cleft with dissolve
     show us normal pioneer far at cright with dissolve
     dv "Ну что, вот ты и нашелся, Дурачелло."
@@ -225,6 +227,8 @@ label SMVIJPNNN_day2_label1:
             sl "Что это тут происходит?"
             sl "Двачевская, опять ты?!"
             sl "Семен, иди кушай, я с ними разберусь!"
+            me "Хорошо, спасибо Славя."
+            dv "Я тебе ещё припомню..."
             
         "Пройти мимо сделав вид, что незаметил":
             show dv angry pioneer far at cleft with dissolve
@@ -238,55 +242,139 @@ label SMVIJPNNN_day2_label1:
             show us surprise pioneer far at cright with dissolve
             show sl serious pioneer far center  with dissolve
             sl "Семён иди кушай, я с ней поговорю."
+            me "Хорошо, спасибо Славя."
+            dv "Я тебе ещё припомню..."
             
-    
-    me "Хорошо, спасибо Славя."
-    dv "Я тебе ещё припомню..."
+        "Попробовать поговорить":   
+            $ ES_Alisa_comfort_points_SMVIJ += 1
+            me "Алиса, давай спокойно поговорим?"
+            show dv shocked pioneer far at cleft with dissolve
+            us "Ну вы тут сами разбирайтесь, а я кушать пошла!"
+            hide us surprise pioneer far at cright
+            "Судя по взгляду Леры, она ревнует."
+            me "Алиса, ты прости меня за тот случай с подножкой, я тогда был зол."
+            show dv rage pioneer far at center with dissolve
+            dv "Ну я тоже была зла на тебя!"
+            th "Как же ее успокоить? Эх, Алиса. Ты всегда мне нравилась."
+            me "Давай не будем с тобой ругаться. {w}Наше первое знакомство прошло не очень."
+            me "Давай хоть попробуем наладить отношения?"
+            show dv shy pioneer close at center with dissolve
+            dv "Семён, прости меня, за руку."
+            me "А ты за подножку."
+            "Кажется Алиса начала успокаиваться. {w}А вот Лера сейчас кажется убьет меня."
+            show dv smile pioneer close at center with dissolve
+            dv "Пойдем кушать?"
+            me "Я попозже приду, иди без меня. Приятного аппетита."
+            dv "Хорошо, спасибо."
+            hide dv smile pioneer close at center
+            Ler_SM "Ну и что это было?"
+            me "Ничего, просто избежал проблем. {w}Ревнуешь?"
+            Ler_SM "Нет, с чего бы это? {w}Пойдем есть!"
+            
     play ambience ambience_dining_hall_full fadeout 2 fadein 1
-    scene int_dining_hall_people_sunset with dissolve
-    "Её слова растворились, позади меня."
+    scene int_dining_hall_people_day with dissolve
     Ler_SM "Потом мне еду принесёшь, я постою рядом, пока ты кушаешь."
     me "Обязательно Лера, обязательно."
     "Я взял поднос и начал выискивать столик."
     "Свободный оказался лишь рядом с Кристиной."
-    show Kristy smile pioneer far at cleft with dissolve
+    show Kristy smile pioneer at center with dissolve
     Vlr_SM "Привет, ребята."
     me "Привет, Кристя."
     "Мы произнесли это вдвоем."
     Vlr_SM "Лера, что стоишь, возьми стул и присаживайся с нами."
     Ler_SM "Нет, я постою."
     me "Потом с тобой поговорим, Кристина."
-    show Kristy normal pioneer far at cleft with dissolve
+    show Kristy normal pioneer at center with dissolve
     Vlr_SM "А о чем?"
     Ler_SM "У меня есть, одна проблема, я думаю ты это имел в виду, Семён."
     Vlr_SM "Хорошо, я выслушаю вас позже."
     "Завтрак кончился и я первый вышел из столовой. {w}Девочки шли позади и болтали о своём."
     play ambience ambience_camp_center_evening fadeout 2 fadein 1
     scene ext_dining_hall_near_sunset
-    show mt normal pioneer far at center with dissolve
-    show Kristy normal pioneer far at cleft with dissolve
+    show mt normal pioneer far at cleft with dissolve
+    show Kristy normal pioneer at center with dissolve
     th "Она держит обходной, значит мне предстоит знакомство с остальными жителями."
     mt "Привет, Семён. У меня для тебя задание."
     me "Здравствуйте Ольга Дмитриевна. Да я готов ко всему."
     "Я сказал улыбаясь и вожатая тоже начала улыбаться."
-    show mt smile pioneer far at center with dissolve
+    show mt smile pioneer far at cleft with dissolve
     mt "Ничего такого, просто обходной лист, ты должен его пройти как можно быстрее!"
     me "Вас понял, будет сделано."
     mt "Постарайся пройти до обеда, а то голодный будешь потом ходить."
-    show mt angry pioneer far at center with dissolve
+    show mt angry pioneer far at cleft with dissolve
     mt "А ты Кристина, помнишь что я говорила на линейке?"
-    show Kristy shy pioneer far at cleft with dissolve
+    show Kristy shy pioneer at center with dissolve
     Vlr_SM "Да."
     mt "Иди выполняй!"
-    show Kristy smile pioneer far at cleft with dissolve
+    show Kristy smile pioneer at center with dissolve
     Vlr_SM "Хорошо."
     "Нотка грусти прозвучала в ее ответе."
     mt "Все идите ребята, не смею задерживать вас."
     scene ext_houses_day with dissolve
-    show Kristy normal pioneer far at cleft with dissolve
+    show Kristy normal pioneer at center with dissolve
+    "Мы пришли к домикам и тут Лера сказала."
     Ler_SM "Ладно Семён, иди лист проходи, а я с Кристей пойду."
-    show Kristy shy pioneer far at cleft with dissolve
+    show Kristy shy pioneer at center with dissolve
     me "Хорошо, удачи вам девочки."
     Vlr_SM "И тебе удачи, Семён."
+    th "Ну чтож, куда пойдем?"
     
+    $ disable_all_zones()
+
+    $ set_zone("music_club","day2_musclub_SMVIJ")
+    $ set_zone("clubs","day2_clubs_SMVIJ")
+    $ set_zone("library","day2_library_SMVIJ")
+    $ set_zone("medic_house","day2_aidpost_SMVIJ")
+
+    jump day2_map_SMVIJ
+    
+label day2_map_SMVIJ:
+    if day2_map_necessary_done == 4:
+        jump day_main_SMVIJ_mode2
+        
+    $ show_map()
+    
+label day2_musclub_SMVIJ:
+    scene ext_houses_day with dissolve
+    "Я отправился к музыкальному клубу."
+    scene ext_musclub_day with dissolve
+    th "Вот я и у музыкального клуба."
+    "Сейчас мне предстоит знакомство с милой японкой."
+    th "Эх ну чтож Семен, пойдем!"
+    play ambience ambience_music_club_day fadein 1
+    scene int_musclub_day with dissolve
+    
+    
+    
+    $ disable_current_zone()
+    $ day2_map_necessary_done +=1
+    jump day2_map
+    
+label day2_clubs_SMVIJ:
+    scene ext_houses_day with dissolve
+    "Я отправился к Задротам."
+    
+    $ disable_current_zone()
+    $ day2_map_necessary_done +=1
+    jump day2_map
+
+label day2_library_SMVIJ:
+    scene ext_houses_day with dissolve
+    "Я отправился к Сучке."
+    
+    $ disable_current_zone()
+    $ day2_map_necessary_done +=1
+    jump day2_map
+    
+label day2_aidpost_SMVIJ:   
+    scene ext_houses_day with dissolve
+    "Я отправился к СЕКССЕСТРЕ."
+    
+    $ disable_current_zone()
+    $ day2_map_necessary_done +=1
+    jump day2_map
+    
+label day_main_SMVIJ_mode2:
+    scene ext_square_day with dissolve
+    "Итак, я собрал все подписи."
     return
