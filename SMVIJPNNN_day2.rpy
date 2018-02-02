@@ -19,6 +19,8 @@
     $ Saya = "mods/SMVIJPNNN/music/Saya.mp3"
     
     $ ES_Alisa_comfort_points_SMVIJ = 0
+    $ ES_Slavya_comfort_points_SMVIJ = 0
+    $ ES_Lena_comfort_points_SMVIJ = 0
     
     $ d1_Lera_diner_ploho = False
     $ d2_MT_palevo = False
@@ -409,7 +411,7 @@ label day2_map_SMVIJ:
     $ show_map()
     
 label day2_musclub_SMVIJ:
-    scene ext_houses_day with dissolve
+    scene black with dissolve
     "Я отправился к музыкальному клубу."
     scene ext_musclub_day with dissolve
     th "Вот я и у музыкального клуба."
@@ -425,23 +427,110 @@ label day2_musclub_SMVIJ:
     jump day2_map_SMVIJ
     
 label day2_clubs_SMVIJ:
-    scene ext_houses_day with dissolve
-    "Я отправился к Задротам."
-    
+    scene black with dissolve
+    "Я отправился к зданию клубов."
+    scene ext_clubs_day with dissolve
+    th "Вот я и пришёл. {w}Ну чтож, пойдем знакомиться с гениями робототехники."
+    "Так, надеюсь мне не придется вступать к ним в клуб."
+    "А если они меня начнут окружать, то в любом случае меня спасет Славя."
+    "Наверное с роботом своим возятся сейчас. Придется их отвлечь."
+    th "Так, пойдем!"
+    scene d5_clubs_robot with dissolve
+    "Как я угадал. Для чего им такой робот интересно? {w}На ум лезут только пошлые мысли."
+    el "А, ты наверное Семён. Проходи!"
+    scene int_clubs_male_day with dissolve 
+    show el normal pioneer far at cleft with dissolve
+    el "Знакомься, это Шурик!"
+    show sh normal_smile pioneer far at cright with dissolve
+    sh "Привет, дружище."
+    el "О, а ты наверное к нам в клуб пришёл вступать, я прав?"
+    sh "Вступай, у нас очень интересно. {w}Мы как раз робота делаем. И тебя научим!"
+    me "Да нет, ребят, мне всего лишь обходной лист подписать."
+    el "Так а ты вступи, затем подпишем."
+    show el laugh pioneer far at cleft
+    show sh laugh pioneer far at cright
+    "Ну где же Славя, которая должна уже спасать меня?"
+    "А вот и она! {w}Моё спасение."
+    show sl angry pioneer far at center with dissolve
+    sl "А что это тут происходит?"
+    show sh normal far at cright
+    show el normal far at cleft
+    sl "Семён, что ты хотел?"
+    me "Да, обходной подписать."
+    sl "Сейчас все будет."
+    "Она взяла у меня обходной лист и подошла к Шурику."
+    sl "Подписывай!"
+    show sh surprise far at cright
+    "Она сказала это в таком тоне, что Шурик немного удивился."
+    sl "Подписывай сказала!"
+    sh "Х-х-хорошо."
+    "Он подписал мне обходной и мы вышли из клубов."
+    scene ext_clubs_day
+    show sl happy pioneer far at center with dissolve
+    sl "Вот такие у нас гении тут."
+    sl "Они не сильно тебя измучали?"
+    "Говоря это она потихоньку приближалась ко мне."
+    show sl happy pioneer close at center
+    me "Вовсе нет, но спасибо тебе за помощь, я уж думал что никогда не избавлюсь от них."
+    "Сказал я улыбнувшись."
+    show sl tender pioneer close at center
+    sl "Слушай, Семён, а что ты сегодня вечером делаешь?"
+    "Этот вопрос ввел меня в ступор."
+    "Не уж то она решила меня на свидание позвать? {w}Да нет бред какой-то."
+    "Ну нужно как-то отвечать, так что думай Семён."
+    menu:
+        "Меня Ольга Дмитриевна просила помочь":
+            sl "Как жалко, а я хотела тебя гулять позвать."
+            show sl sad pioneer close at center
+            
+        "Ничего не делаю":
+            sl "Отлично, тогда ничего не планируй!"
+            $ ES_Slavya_comfort_points_SMVIJ += 1
+            sl "Хочу тебе пару красивых мест показать."
+            me "Хорошо, буду с нетерпением ждать этого."
+            show sl shy pioneer close at center
+            
+    me "Слушай я пойду, дела."
+    sl "Хорошо, удачи Семён."
+            
     $ disable_current_zone()
     $ day2_map_necessary_done +=1
     jump day2_map_SMVIJ
 
 label day2_library_SMVIJ:
-    scene ext_houses_day with dissolve
-    "Я отправился к Сучке."
+    scene black with dissolve
+    "Я отправился в библиотеку."
+    scene ext_library_day with dissolve
+    "Наверное дрыхнет во всю."
+    "Как бы ее позлить? {w}Ну не знаю, просто разбужу."
+    "Время еще терять из за её сна."
+    "Она не заслуживает такого."
+    scene int_library_day with dissolve
+    un "Ой..."
+    th "Господи, я чуть Лену не убил."
+    show un scared pioneer close at center with dissolve
+    "Она хотела выходить из библиотеки, а я её дверью ударил."
+    me "Прости, Лена."
+    me "Я не знал что ты тут."
+    un "Ничего, со всеми бывает, а мне и не больно вовсе."
+    th "Ага, конечно, вон какая шишка вскочила."
+    menu:
+        "Позаботиться":
+            $ ES_Lena_comfort_points_SMVIJ += 1 
+            me "Ничего себе не больно, вон какая шишка вскочила."
+            me "Тебе надо к медсестре срочно!"
+            me "Сейчас я получу подпись от Жени и пойдем вместе к медсестре."
+            show un shy pioneer close at center
+        
+        "Ничего не делать":
+            
     
     $ disable_current_zone()
     $ day2_map_necessary_done +=1
     jump day2_map_SMVIJ
     
 label day2_aidpost_SMVIJ:   
-    scene ext_houses_day with dissolve
+    scene black with dissolve
     "Я отправился к СЕКССЕСТРЕ."
     
     $ disable_current_zone()
