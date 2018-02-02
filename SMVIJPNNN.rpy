@@ -26,6 +26,7 @@
     
     $ ES_girls_comfort_points_SMVIJ = 0
     $ ES_Lera_comfort_points_SMVIJ = 0
+    $ ES_Slavya_comfort_points_SMVIJ = 0
     
     $ d1_Lera_diner_ploho = False
     $ Krst_comfort_SMVIJPNNN = 0
@@ -445,6 +446,7 @@ label SMVIJPNNN_label_1:
     menu:
         "Позволить Славе завязать":
             $ ES_girls_comfort_points_SMVIJ += 1
+            $ ES_Slavya_comfort_points_SMVIJ += 1
             hide sl
             show sl smile pioneer close at center with dspr
             "Славя подошла ко мне и полностью развязала галстук."
@@ -698,6 +700,7 @@ label SMVIJPNNN_label_1:
         "Уступить место Славе":
             $ d1_Lera_diner_ploho = True
             $ ES_girls_comfort_points_SMVIJ += 1
+            $ ES_Slavya_comfort_points_SMVIJ += 1
             th "Деваться некуда."
             me "Ну... {w}Да, садись."
             "Лера с обидой посмотрела на меня и сказала."

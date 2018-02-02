@@ -19,11 +19,18 @@
     $ Saya = "mods/SMVIJPNNN/music/Saya.mp3"
     
     $ ES_Alisa_comfort_points_SMVIJ = 0
-    $ ES_Slavya_comfort_points_SMVIJ = 0
+    
     $ ES_Lena_comfort_points_SMVIJ = 0
     
-    $ d1_Lera_diner_ploho = False
+    
+    $ d2_clubs_smv_vh = False
+    $ d2_muzclub_smv_vh = False
+    $ d2_library_smv_vh = False
+    $ d2_aidpost_smv_vh = False
+    
+    
     $ d2_MT_palevo = False
+    $ d2_SL_svidanka = False
     
     image Kristy normal pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_sp_1.png"), im.matrix.tint(0.94, 0.82, 1.0) )
     image Kristy angry pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_1_angry.png"), im.matrix.tint(0.94, 0.82, 1.0) )
@@ -264,7 +271,7 @@ label SMVIJPNNN_day2_label1:
             "Она хотела было накинуться на меня, но тут знакомый голос меня спас."
             sl "Двачевская! Что ты делаешь?"
             show dv shocked  pioneer far at cleft with dissolve
-            show us surprise pioneer far at cright with dissolve
+            show us surp1 pioneer far at cright with dissolve
             show sl serious pioneer far center  with dissolve
             sl "Семён иди кушай, я с ней поговорю."
             me "Хорошо, спасибо Славя."
@@ -411,7 +418,15 @@ label day2_map_SMVIJ:
     $ show_map()
     
 label day2_musclub_SMVIJ:
-    scene black with dissolve
+    if d2_aidpost_smv_vh == False and d2_clubs_smv_vh == False and d2_library_smv_vh == False and d2_muzclub_smv_vh == False :
+        scene ext_dining_hall_near_day with dissolve
+    if d2_aidpost_smv_vh == True:
+        scene ext_aidpost_day with dissolve
+    if d2_library_smv_vh == True:
+        scene ext_library_day with dissolve
+    if d2_muzclub_smv_vh == True:
+        scene ext_musclub_day with dissolve
+    
     "Я отправился к музыкальному клубу."
     scene ext_musclub_day with dissolve
     th "Вот я и у музыкального клуба."
@@ -421,25 +436,39 @@ label day2_musclub_SMVIJ:
     scene int_musclub_day with dissolve
     
     
+    $ d2_clubs_smv_vh = False
+    $ d2_aidpost_smv_vh = False
+    $ d2_library_smv_vh = False
+    $ d2_muzclub_smv_vh = True
+    
     
     $ disable_current_zone()
     $ day2_map_necessary_done +=1
     jump day2_map_SMVIJ
     
 label day2_clubs_SMVIJ:
-    scene black with dissolve
+    if d2_aidpost_smv_vh == False and d2_clubs_smv_vh == False and d2_library_smv_vh == False and d2_muzclub_smv_vh == False :
+        scene ext_dining_hall_near_day with dissolve
+    if d2_aidpost_smv_vh == True:
+        scene ext_aidpost_day with dissolve
+    if d2_library_smv_vh == True:
+        scene ext_library_day with dissolve
+    if d2_muzclub_smv_vh == True:
+        scene ext_musclub_day with dissolve
     "Я отправился к зданию клубов."
+    "Карту я уже знаю наизусть, так что для меня не составит труда дойти туда с закрытыми глазами."
     scene ext_clubs_day with dissolve
     th "Вот я и пришёл. {w}Ну чтож, пойдем знакомиться с гениями робототехники."
     "Так, надеюсь мне не придется вступать к ним в клуб."
     "А если они меня начнут окружать, то в любом случае меня спасет Славя."
-    "Наверное с роботом своим возятся сейчас. Придется их отвлечь."
+    "Наверное с роботом своим возятся сейчас. {w}Придется их отвлечь."
     th "Так, пойдем!"
     scene d5_clubs_robot with dissolve
-    "Как я угадал. Для чего им такой робот интересно? {w}На ум лезут только пошлые мысли."
+    "Как я угадал. {w}Для чего им такой робот интересно? {w}На ум лезут только пошлые мысли."
     el "А, ты наверное Семён. Проходи!"
-    scene int_clubs_male_day with dissolve 
-    show el normal pioneer far at cleft with dissolve
+    scene int_clubs_male_day  
+    show el normal pioneer far at cleft
+    with dissolve
     el "Знакомься, это Шурик!"
     show sh normal_smile pioneer far at cright with dissolve
     sh "Привет, дружище."
@@ -451,6 +480,7 @@ label day2_clubs_SMVIJ:
     show sh laugh pioneer far at cright
     "Ну где же Славя, которая должна уже спасать меня?"
     "А вот и она! {w}Моё спасение."
+    "Удивительно, что в этот раз всё совпало с оригинальным сюжетом."
     show sl angry pioneer far at center with dissolve
     sl "А что это тут происходит?"
     show sh normal far at cright
@@ -462,11 +492,11 @@ label day2_clubs_SMVIJ:
     sl "Подписывай!"
     show sh surprise far at cright
     "Она сказала это в таком тоне, что Шурик немного удивился."
-    sl "Подписывай сказала!"
     sh "Х-х-хорошо."
     "Он подписал мне обходной и мы вышли из клубов."
     scene ext_clubs_day
-    show sl happy pioneer far at center with dissolve
+    show sl happy pioneer far at center 
+    with dissolve
     sl "Вот такие у нас гении тут."
     sl "Они не сильно тебя измучали?"
     "Говоря это она потихоньку приближалась ко мне."
@@ -484,6 +514,7 @@ label day2_clubs_SMVIJ:
             show sl sad pioneer close at center
             
         "Ничего не делаю":
+            $ d2_SL_svidanka = True 
             sl "Отлично, тогда ничего не планируй!"
             $ ES_Slavya_comfort_points_SMVIJ += 1
             sl "Хочу тебе пару красивых мест показать."
@@ -492,13 +523,28 @@ label day2_clubs_SMVIJ:
             
     me "Слушай я пойду, дела."
     sl "Хорошо, удачи Семён."
+    hide sl with dissolve
+    "Славя развернулась и пошла в направлении площади."
+    th "Ну что, куда теперь?"
+    $ d2_clubs_smv_vh = True
+    $ d2_aidpost_smv_vh = False
+    $ d2_library_smv_vh = False
+    $ d2_muzclub_smv_vh = False
             
     $ disable_current_zone()
     $ day2_map_necessary_done +=1
     jump day2_map_SMVIJ
 
 label day2_library_SMVIJ:
-    scene black with dissolve
+    if d2_aidpost_smv_vh == False and d2_clubs_smv_vh == False and d2_library_smv_vh == False and d2_muzclub_smv_vh == False :
+        scene ext_dining_hall_near_day with dissolve
+    if d2_aidpost_smv_vh == True:
+        scene ext_aidpost_day with dissolve
+    if d2_library_smv_vh == True:
+        scene ext_library_day with dissolve
+    if d2_muzclub_smv_vh == True:
+        scene ext_musclub_day with dissolve
+    
     "Я отправился в библиотеку."
     scene ext_library_day with dissolve
     "Наверное дрыхнет во всю."
@@ -523,15 +569,36 @@ label day2_library_SMVIJ:
             show un shy pioneer close at center
         
         "Ничего не делать":
+            "Кек"
             
+    $ d2_clubs_smv_vh = False 
+    $ d2_aidpost_smv_vh = False
+    $ d2_library_smv_vh = True
+    $ d2_muzclub_smv_vh = False
+    
     
     $ disable_current_zone()
     $ day2_map_necessary_done +=1
     jump day2_map_SMVIJ
     
-label day2_aidpost_SMVIJ:   
-    scene black with dissolve
+label day2_aidpost_SMVIJ:
+    if d2_aidpost_smv_vh == False and d2_clubs_smv_vh == False and d2_library_smv_vh == False and d2_muzclub_smv_vh == False :
+        scene ext_dining_hall_near_day with dissolve
+    if d2_aidpost_smv_vh == True:
+        scene ext_aidpost_day with dissolve
+    if d2_library_smv_vh == True:
+        scene ext_library_day with dissolve
+    if d2_muzclub_smv_vh == True:
+        scene ext_musclub_day with dissolve
+    
     "Я отправился к СЕКССЕСТРЕ."
+    
+    
+    $ d2_clubs_smv_vh = False 
+    $ d2_aidpost_smv_vh = True
+    $ d2_library_smv_vh = False
+    $ d2_muzclub_smv_vh = False
+    
     
     $ disable_current_zone()
     $ day2_map_necessary_done +=1
