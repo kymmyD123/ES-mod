@@ -31,6 +31,7 @@
     
     $ d2_MT_palevo = False
     $ d2_SL_svidanka = False
+    $ d2_LN_pomosh = False
     
     image Kristy normal pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_sp_1.png"), im.matrix.tint(0.94, 0.82, 1.0) )
     image Kristy angry pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_1_angry.png"), im.matrix.tint(0.94, 0.82, 1.0) )
@@ -551,6 +552,7 @@ label day2_library_SMVIJ:
     "Как бы ее позлить? {w}Ну не знаю, просто разбужу."
     "Время еще терять из за её сна."
     "Она не заслуживает такого."
+    play ambience ambience_library_day fadein 1
     scene int_library_day with dissolve
     un "Ой..."
     th "Господи, я чуть Лену не убил."
@@ -563,14 +565,42 @@ label day2_library_SMVIJ:
     menu:
         "Позаботиться":
             $ ES_Lena_comfort_points_SMVIJ += 1 
+            $ d2_LN_pomosh = True
             me "Ничего себе не больно, вон какая шишка вскочила."
             me "Тебе надо к медсестре срочно!"
             me "Сейчас я получу подпись от Жени и пойдем вместе к медсестре."
             show un shy pioneer close at center
+            me "Подожди меня снаружи."
+            un "Хорошо."
+            hide un 
+            
         
         "Ничего не делать":
-            "Кек"
+            "Ладно, чем я ей помочь то могу?"
+            me "Ну ладно, я пойду подпись получу {w}позже увидимся."
+            show un shy pioneer close at center
+            un "Хорошо."
+            hide un 
+            "Так и как же будить ее будем?"
             
+    mz "А тебе чего?"
+    show mz angry glasses pioneer close at center with dissolve 
+    "Видимо не получится позлить."
+    "Я настолько шумно открыл дверь, что она проснулась."
+    me "Да вот, обходной подписать."
+    mz "Давай сюда."
+    "Она выхватила у меня обходной и подписала его."
+    mz "А теперь вали."
+    me "А зачем мне тут оставаться? Бывай."
+    scene ext_library_day with dissolve
+    "Как же она меня бесит."
+        
+    if d2_LN_pomosh = True
+        show un normal pioneer close at center with dissolve
+        me "Сильно болит?"
+        show un surprise pioneer close at center
+        un "Нет, уже почти не болит."
+        
     $ d2_clubs_smv_vh = False 
     $ d2_aidpost_smv_vh = False
     $ d2_library_smv_vh = True
