@@ -428,13 +428,23 @@ label day2_musclub_SMVIJ:
     if d2_muzclub_smv_vh == True:
         scene ext_musclub_day with dissolve
     
-    "Я отправился к музыкальному клубу."
+    play ambience ambience_camp_center_day fadeout 2 fadein 1
+    th "Музыки что ли послушать?
+    "Спустя какое-то время я принял окончательное решение и направился в сторону музыкального клуба."
     scene ext_musclub_day with dissolve
-    th "Вот я и у музыкального клуба."
-    "Сейчас мне предстоит знакомство с милой японкой."
+    "Добравшись до музыкального клуба я уже мог слышать звуки рояля."
+    th "Сейчас мне предстоит знакомство с милой японкой."
+    "Её пикантная поза уже всплыла у меня в голове."
+    th "А вдруг в этот раз будет всё иначе?"
+    th "Есть только один способ проверить."
     th "Эх ну чтож, Семен, пойдем!"
+    play sound sfx_open_door_squeak_2
     play ambience ambience_music_club_day fadein 1
     scene int_musclub_day with dissolve
+# ЗДЕСЬ НАДО ПОСТАВИТЬ MI(2) ИЗ ПАПКИ "СПРАЙТЫ НЕ ИЗ БЛ"
+    ""
+    scene ext_musclub_day with dissolve
+    play ambience ambience_camp_center_day fadeout 2 fadein 1
     
     
     $ d2_clubs_smv_vh = False
@@ -572,7 +582,13 @@ label day2_library_SMVIJ:
             show un shy pioneer close at center
             me "Подожди меня снаружи."
             un "Хорошо."
-            hide un 
+            hide un
+            if d2_med_sv_vh == False :
+                "ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЕН ЕЩЕ НЕ БЫЛ В МЕДПУНКТЕ."
+                $ reset_zone("medic_house")
+            else:
+                "ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЁН УЖЕ БЫЛ В МЕДПУНКЕ."
+            
             
         
         "Ничего не делать":
@@ -628,6 +644,8 @@ label day2_aidpost_SMVIJ:
     $ d2_aidpost_smv_vh = True
     $ d2_library_smv_vh = False
     $ d2_muzclub_smv_vh = False
+    
+    $ d2_med_sv_vh = True
     
     
     $ disable_current_zone()
