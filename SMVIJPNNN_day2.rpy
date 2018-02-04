@@ -2,6 +2,7 @@
     image ext_warehouse_day = "mods/SMVIJPNNN/image/bg/ext_warehouse_day.jpg"
     image int_warehouse_day = "mods/SMVIJPNNN/image/bg/int_warehouse_day.png"
     image lineup = "mods/SMVIJPNNN/image/cg/day2/d2_lineup.jpg"
+    image d2_mi_pose_smvij_nn = "mods/SMVIJPNNN/image/cg/day2/d2_mi_pose_smvij_nn.png"
     
     $ Ler_SM = Character(u'Лера', color="99FF99", what_color="E2C778")
     $ Pioners_SMVIJ = Character(u'Пионеры', color ="#009966", what_color = "E2C778")
@@ -443,8 +444,49 @@ label day2_musclub_SMVIJ:
     play sound sfx_open_door_squeak_2
     play ambience ambience_music_club_day fadein 1
     scene int_musclub_day with dissolve
-# ЗДЕСЬ НАДО ПОСТАВИТЬ MI(2) ИЗ ПАПКИ "СПРАЙТЫ НЕ ИЗ БЛ"
-    ""
+    "Внутри меня ждала целая группа инструментов. {w}Прямо оркестр из одной особы."
+    "Я инсктинктивно посмотрел под рояль."
+    th "NANI?!"
+    $ renpy.notify("NANI на японском означает ~Чего?~")
+    th "Где Мику?"
+    "Вместо неё на полу был только отблеск яркого солнца, от которого не скрыться даже на этом, забытом людьми, местом."
+    "И только потом, когда я уже решил осмотреться до меня дошло..."
+    th "Как же я могу быть таким не внимательным..."
+    show d2_mi_pose_smvij_nn with dissolve
+    "Мику была совершенно в другом месте."
+    th "Но стоит она всё равно замечательно, не так ли?"
+    "Так, стоп. Надо собраться."
+    me "Кхм-кхм..."
+    "Я решил привлечь к себе внимание."
+    mi "Что?!" with vpunch
+    hide d2_mi_pose_smvij_nn with dspr
+    "Мику пыталась развернуться, но она оступилась."
+    th "Вот дурак. Знаешь же, что она неуклюжая."
+    "Люди ходить по воздуху не умеют, следовательно она и повстречалась с чистым, блестящим от натирки и ласки, но твердым полом."
+    th "Хорошо, что на неё все книжки не упали."
+    "Мику пыталась встать, но я решил помочь."
+    show mi sad pioneer close at center with dissolve
+    me "Мику, давай я тебе помогу."
+    show mi shocked pioneer close at center
+    "Мику очень удивилась."
+    th "Чего это она?"
+    show mi sad pioneer close at center
+    "Но буквально через несколько секунд она взяла себя в руки."
+    mi "Спасибо."
+    hide mi with dspr
+    "Я аккуратно помог ей подняться."
+    "Вот она на ногах, но она всё всматривается в моё лицо."
+    show mi normal pioneer at center with dspr
+    mi "А мы раньше встречались?"
+    th "Что она имеет в виду?"
+    me "Думаю нет."
+    show mi smile pioneer at center
+    mi "Тогда откуда ты знаешь моё имя?"
+    th "Вот черт! Проболтался."
+    th "Думай, Семён, думай."
+    "..."
+    me "Да мне о тебе говорили, когда бегунок давали."
+    "Первое, что смог сказать я."
     scene ext_musclub_day with dissolve
     play ambience ambience_camp_center_day fadeout 2 fadein 1
     
