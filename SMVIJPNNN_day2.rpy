@@ -22,6 +22,8 @@
     
     $ ES_Lena_comfort_points_SMVIJ = 0
     
+    $ d2_med_sv_vh = False
+    $ d2_Lena_nnd = False
     
     $ d2_clubs_smv_vh = False
     $ d2_muzclub_smv_vh = False
@@ -693,6 +695,7 @@ label day2_library_SMVIJ:
                 $ reset_zone("medic_house")
         
         "Ничего не делать":
+            $ d2_Lena_nnd == True
             "Ладно, чем я ей помочь то могу?"
             me "Ну ладно, я пойду подпись получу {w}позже увидимся."
             show un shy pioneer close at center
@@ -707,20 +710,34 @@ label day2_library_SMVIJ:
             mz "Давай сюда."
             "Она выхватила у меня обходной и подписала его."
             mz "А теперь вали."
-            me "А зачем мне тут оставаться? Бывай."
+            me "А зачем мне тут оставаться? {w}Бывай."
             scene ext_library_day with dissolve
             "Как же она меня бесит."
     
         
-        
-    $ d2_clubs_smv_vh = False 
-    $ d2_aidpost_smv_vh = False
-    $ d2_library_smv_vh = True
-    $ d2_muzclub_smv_vh = False
+    if d2_med_sv_vh == False:
+        $ d2_clubs_smv_vh = False 
+        $ d2_aidpost_smv_vh = True
+        $ d2_library_smv_vh = False
+        $ d2_muzclub_smv_vh = False
+    else:
+        $ d2_clubs_smv_vh = False 
+        $ d2_aidpost_smv_vh = True
+        $ d2_library_smv_vh = False
+        $ d2_muzclub_smv_vh = False
+    if d2_Lena_nnd == True:
+        $ d2_clubs_smv_vh = False 
+        $ d2_aidpost_smv_vh = False
+        $ d2_library_smv_vh = True
+        $ d2_muzclub_smv_vh = False
     
     
     $ disable_current_zone()
-    $ day2_map_necessary_done +=1
+    if d2_med_sv_vh == False:
+    
+        $ day2_map_necessary_done +=2
+    else:
+        $ day2_map_necessary_done +=1
     jump day2_map_SMVIJ
     
 label day2_aidpost_SMVIJ:
