@@ -12,7 +12,7 @@
     $ bus_engine = "mods/SMVIJPNNN/music/bus_engine.mp3"
     $ nobody_secret = "mods/SMVIJPNNN/music/nobody_secret.mp3"
     $ Sakura = "mods/SMVIJPNNN/music/Sakura.mp3"
-    $ homyak_theme = "mods/SMVIJPNNN/music/homyak_theme.mp3"
+    $ morning = "mods/SMVIJPNNN/music/morning.mp3"
     $ soft_horn = "mods/SMVIJPNNN/music/soft_horn.mp3"
     $ spring = "mods/SMVIJPNNN/music/spring.mp3"
     $ silent_garden = "mods/SMVIJPNNN/music/silent_garden.mp3"
@@ -429,7 +429,7 @@ label day2_musclub_SMVIJ:
         scene ext_musclub_day with dissolve
     
     play ambience ambience_camp_center_day fadeout 2 fadein 1
-    th "Музыки что ли послушать?
+    th "Музыки что ли послушать?"
     "Спустя какое-то время я принял окончательное решение и направился в сторону музыкального клуба."
     scene ext_musclub_day with dissolve
     "Добравшись до музыкального клуба я уже мог слышать звуки рояля."
@@ -592,9 +592,10 @@ label day2_library_SMVIJ:
             "Она выхватила у меня обходной и подписала его."
             mz "А теперь вали."
             me "А зачем мне тут оставаться? Бывай."
+            stop ambience fadeout 2
             scene ext_library_day with dissolve
             "Как же она меня бесит."
-            play music Sakura fadein 1
+            play music morning fadein 3
             show un normal pioneer close at center with dissolve
             me "Сильно болит?"
             show un surprise pioneer close at center
@@ -617,6 +618,13 @@ label day2_library_SMVIJ:
             
             "Какая же она милая."
             me "Пойдём."
+            scene d3_un_forest with dissolve
+            "Мы шли с ней медленно."
+            "Она взяла меня под руку, потому что у неё кружилась голова."
+            "Сильно наверное я её ударил."
+            "Какая же она все таки красивая."
+            "Мне кажется что стеснение ей даже подходит."
+            "Она молчала всю дорогу, но находиться рядом с ней уже значило для меня многое."
             stop music fadeout 2
             scene ext_aidpost_day with dissolve
             "Мы подошли с ней к медпункту."
