@@ -435,6 +435,8 @@ label day2_musclub_SMVIJ:
         scene ext_library_day with dissolve
     if d2_muzclub_smv_vh == True:
         scene ext_musclub_day with dissolve
+    if d2_clubs_smv_vh == True:
+        scene ext_clubs_day with dissolve
     
     play ambience ambience_camp_center_day fadeout 2 fadein 1
     th "Музыки что ли послушать?"
@@ -589,7 +591,18 @@ label day2_musclub_SMVIJ:
         
         
         "Не слушать музыку":
-            "Ккк."
+            th "Не думаю, что это стоит того."
+            me "Прости, времени реально мало. Я еще на обед хочу. Давай как-нибудь в другой раз?"
+            show mi sad pioneer at center
+            mi "Ну ладно, тогда в следующий раз."
+            me "Ты на меня не в обиде за это?"
+            show mi smile pioneer at center
+            mi "Нет, ты что."
+            me "Ну хорошо. Тогда я еще зайду."
+            mi "Отлично. До скорой встречи."
+            hide mi with dissolve
+            "Я развернулся и направился к выходу."
+            
     
     scene ext_musclub_day with dissolve
     play ambience ambience_camp_center_day fadeout 2 fadein 1
@@ -614,6 +627,8 @@ label day2_clubs_SMVIJ:
         scene ext_library_day with dissolve
     if d2_muzclub_smv_vh == True:
         scene ext_musclub_day with dissolve
+    if d2_clubs_smv_vh == True:
+        scene ext_clubs_day with dissolve
     "Я отправился к зданию клубов."
     "Карту я уже знаю наизусть, так что для меня не составит труда дойти туда с закрытыми глазами."
     scene ext_clubs_day with dissolve
@@ -673,7 +688,8 @@ label day2_clubs_SMVIJ:
             show sl sad pioneer close at center
             
         "Ничего не делаю":
-            $ d2_SL_svidanka = True 
+            $ d2_SL_svidanka = True
+            $ ES_girls_comfort_points_SMVIJ += 1
             sl "Отлично, тогда ничего не планируй!"
             $ ES_Slavya_comfort_points_SMVIJ += 1
             sl "Хочу тебе пару красивых мест показать."
@@ -703,6 +719,8 @@ label day2_library_SMVIJ:
         scene ext_library_day with dissolve
     if d2_muzclub_smv_vh == True:
         scene ext_musclub_day with dissolve
+    if d2_clubs_smv_vh == True:
+        scene ext_clubs_day with dissolve
     
     "Я отправился в библиотеку."
     scene ext_library_day with dissolve
@@ -749,7 +767,7 @@ label day2_library_SMVIJ:
             show un surprise pioneer close at center
             un "Нет, уже почти не болит."
             if d2_med_sv_vh == False :
-                "ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЕН ЕЩЕ НЕ БЫЛ В МЕДПУНКТЕ."
+#"ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЕН ЕЩЕ НЕ БЫЛ В МЕДПУНКТЕ."
                 me "Все равно надо в мед пункт сходить, я там ещё не был, как раз подпишу обходной лист."
                 show un shy pioneer close at center
                 un "Ну тогда нам по пути. Пойдём?"
@@ -757,7 +775,7 @@ label day2_library_SMVIJ:
                 
                 
             else:
-                "ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЁН УЖЕ БЫЛ В МЕДПУНКЕ."
+#"ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЁН УЖЕ БЫЛ В МЕДПУНКЕ."
                 me "Все равно надо сходить в мед пункт, медсестра как раз там сидит, я недавно подписывал обходной там."
                 show un shy pioneer close at center
                 un "А ты не опоздаешь другие подписывать?"
@@ -782,7 +800,7 @@ label day2_library_SMVIJ:
             
             
             if d2_med_sv_vh == False :
-                "ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЕН ЕЩЕ НЕ БЫЛ В МЕДПУНКТЕ."
+#"ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЕН ЕЩЕ НЕ БЫЛ В МЕДПУНКТЕ."
                 show un normal pioneer close at center with dissolve
                 un "Пойдём?"
                 me "Да, конечно, мне же ещё надо подписать его."
@@ -835,7 +853,7 @@ label day2_library_SMVIJ:
             scene ext_aidpost_day with dissolve
             
             if d2_med_sv_vh == False :
-                "ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЕН ЕЩЕ НЕ БЫЛ В МЕДПУНКТЕ."
+#"ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЕН ЕЩЕ НЕ БЫЛ В МЕДПУНКТЕ."
                 "Странные события, ну да ладно."
                 "Вот ещё одна подпись."     
                 $ reset_zone("medic_house")
@@ -895,6 +913,8 @@ label day2_aidpost_SMVIJ:
         scene ext_library_day with dissolve
     if d2_muzclub_smv_vh == True:
         scene ext_musclub_day with dissolve
+    if d2_clubs_smv_vh == True:
+        scene ext_clubs_day with dissolve
     
     "Я отправился к Виоле."
     scene ext_aidpost_day with dissolve
