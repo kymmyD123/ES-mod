@@ -21,6 +21,8 @@
     $ spring = "mods/SMVIJPNNN/music/spring.mp3"
     $ silent_garden = "mods/SMVIJPNNN/music/silent_garden.mp3"
     $ Saya = "mods/SMVIJPNNN/music/Saya.mp3"
+    $ alice_guitar = "mods/SMVIJPNNN/music/alice_guitar.mp3"
+    
     
     $ ES_Alisa_comfort_points_SMVIJ = 0
     
@@ -40,6 +42,7 @@
     $ d2_MT_palevo = False
     $ d2_SL_svidanka = False
     $ d2_LN_pomosh = False
+    $ d2_Al_scene = False
     
     image Kristy normal pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_sp_1.png"), im.matrix.tint(0.94, 0.82, 1.0) )
     image Kristy angry pioneer sunset = im.MatrixColor( im.Composite((900,1080), (0,0), "mods/SMVIJPNNN/image/sprites/uno/uno_1_angry.png"), im.matrix.tint(0.94, 0.82, 1.0) )
@@ -288,6 +291,7 @@ label SMVIJPNNN_day2_label1:
             stop music fadeout 2
             
         "Попробовать поговорить":   
+            $ d2_Al_scene = True
             $ ES_Alisa_comfort_points_SMVIJ += 1
             $ ES_girls_comfort_points_SMVIJ += 1
             me "Алиса, давай спокойно поговорим?"
@@ -965,6 +969,49 @@ label day2_aidpost_SMVIJ:
     jump day2_map_SMVIJ
     
 label day2_main_SMVIJ_mode2:
+    play ambience ambience_camp_center_day fadein 2
     scene ext_square_day with dissolve
     "Итак, я собрал все подписи."
-    return
+    "Теперь надо Леру с Кристиной найти, а то они загуляли где-то."
+    "Было бы проще если бы я слушал на линейке, но что поделать, меня не изменить."
+    th "Куда они могли отправиться?"
+    menu:
+        "Пляж":
+            "Я решил, что они вполне могли пойти на пляж."
+            scene ext_dining_hall_away_day with dissolve
+            $ renpy.pause(1)
+            play ambience ambience_boat_station_day fadeout 2 fadein 1
+            scene ext_beach_day with dissolve 
+            "На пляже было много пионеров."
+            "Кто-то плавал, кто-то следил за порядком, но пока не было видно Леры или Кристины."
+            "Я решил, что лучшим решением будет встретиться с ними на обеде и стал ждать."
+            
+        "Сцена":
+            "Они могут убирать сцену."
+            scene ext_library_day with dissolve
+            $ renpy.pause(1)
+            scene ext_stage_normal_day with dissolve
+            "Как-то я прогадал, возле сцены была Алиса."
+            if d2_Al_scene:
+                th "Пусть играет себе, а я по тихому уйду."
+                
+            else:   
+                th "Пойду пообщаюсь с ней."
+                show dv smile pioneer far at center with dissolve
+                "Она кокетливо спросила."
+                dv "Что послушать пришёл?"
+                show dv shy pioneer far at center
+                me "Ну может быть и так."
+                dv "Ну присаживайся, послушай."
+                show dv smile pioneer far at center
+                play music alice_guitar fadein 2
+                scene d3_dv_scene_2 with dissolve
+                "Она играла очень красиво."
+                "Не знаю что это за мелодия, но звучит она очень роматично."
+                $ renpy.notify ("Вы можете продолжать слушать музыку, а можете пропустить.")
+                ""
+                stop music fadeout 2
+                me "Очень красиво играешь."
+                dv "Я знаю."
+    
+return
