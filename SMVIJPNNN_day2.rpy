@@ -763,6 +763,7 @@ label day2_library_SMVIJ:
             mz "А теперь вали."
             me "А зачем мне тут оставаться? Бывай."
             stop ambience fadeout 2
+            play ambience ambience_camp_center_day fadein 1
             scene ext_library_day with dissolve
             "Как же она меня бесит."
             play music morning fadein 3
@@ -983,7 +984,7 @@ label day2_main_SMVIJ_mode2:
             scene ext_beach_day with dissolve 
             "На пляже было много пионеров."
             "Кто-то плавал, кто-то следил за порядком, но пока не было видно Леры или Кристины."
-            "Я решил, что лучшим решением будет встретиться с ними на обеде и стал ждать."
+            "Я решил, что лучшим решением будет встретиться с ними на обеде и отправился к домику."
             
         "Сцена":
             "Они могут убирать сцену."
@@ -992,7 +993,7 @@ label day2_main_SMVIJ_mode2:
             scene ext_stage_normal_day with dissolve
             "Как-то я прогадал, возле сцены была Алиса."
             if d2_Al_scene:
-                  th "Пойду пообщаюсь с ней."
+                th "Пойду пообщаюсь с ней."
                 show dv smile pioneer far at center with dissolve
                 "Она кокетливо спросила."
                 dv "Что послушать пришёл?"
@@ -1055,6 +1056,15 @@ label day2_main_SMVIJ_mode2:
         show dv smile pioneer far at cright
         dv "Сказала же, на обеде увидимся. {w}Приятного аппетита."
         me "И вам того же, девочки."
+        $ renpy.pause(2)
+        scene black with dissolve
+        $ renpy.pause(2)
+        scene int_dining_hall_people_day with dissolve
+        show us normal pioneer far at cleft with dissolve
+        show dv normal pioneer far at cright with dissolve
+        "Я мигом расправился с едой, но девочки все ещё ели."
+        me "Ладно девчонки, удачи."
+        "Я решил не мешать и удалился из столовой."
     else:
         show us normal pioneer far at cleft with dissolve
         show dv rage pioneer far at cright with dissolve
@@ -1063,5 +1073,106 @@ label day2_main_SMVIJ_mode2:
         "Мне было все равно на её разговоры, поэтому я просто сел к ним за стол."
         show us surp2 pioneer far at cleft
         "Игнорируя их, я закончил трапезу {w}и поспешил удалиться из столовой."
+    
+    play ambience ambience_camp_center_day fadeout 2 fadein 1 
+    scene ext_dining_hall_near_day with dissolve    
+    if d2_SL_svidanka:
+        "И тут я вспомнил, что мне ещё предстоит свидание со Славей."
+        th "Она сказала вечером, но во сколько это?"
+        "Надо найти её и узнать."
+        "А вот кстати и Славяна."
+        show sl smile pioneer close at center with dissolve
+        me "Привет, Славя."
+        sl "Привет Семён."
+        sl "Слушай, я же забыла сказать тебе во сколько и где мы встречаемся."
+        show sl shy pioneer close at center
+        sl "Дурочка я, совсем заработалась."
+        show sl normal pioneer close at center
+        me "Вовсе и не дурочка, просто забыла {w}со всеми бывает."
+        show sl smile pioneer close at center
+        sl "Ладно, смотри после ужина иди на пляж, там и встретимся."
+        me "Хорошо, я все понял."
+        sl "Ладно, Семён, долг зовёт, я пойду."
+        me "До встречи."
+        sl "До встречи."
+        hide sl
+        "Она встала со скамейки и убежала за столовую."
+            
+    else:
+        "Я сел на скамейку возле столовой и принялся ждать."
+            
+
+    $ renpy.pause(2)
+    scene black with dissolve
+    $ renpy.pause(2)
+    scene ext_dining_hall_near_day with dissolve  
+    "Так я просидел минут 20."
+    "Пока я сидел, все пионеры уже закончили свою трапезу и ушли по делам."
+    "Надо было чем-то себя занять, поэтому я решил, что стоит поискать Леру."
+    th "Куда пойдем, Семён?"    
+    
+    $ disable_all_zones()
+
+    $ set_zone("sport_area","day2_sport_area_SMVIJ")
+    $ set_zone("boat_station","day2_boat_station_SMVIJ")
+    $ set_zone("camp_entrance","day2_camp_entrance_SMVIJ")
+    $ set_zone("forest","day2_forest_SMVIJ")
+
+    jump day2_map_poisk_SMVIJ
+    
+label day2_map_poisk_SMVIJ:
+    ##if day2_poisk_necessary_done == 4:            ОШИБКА,НЕ ХОЧЕТ ВЫЯВЛЯТЬ ПЕРЕМЕННУЮ##
+    if day2_map_necessary_done == 4:
+        jump day2_poisk_SMVIJ_mode2
         
+    $ show_map()
+    
+label day2_sport_area_SMVIJ:
+    "Может они убирают спорт площадку?"
+    
+    $ disable_current_zone()
+    ##$ day2_poisk_necessary_done +=1##
+    jump day2_map_poisk_SMVIJ
+    
+label day2_boat_station_SMVIJ:
+    "Хм, наверное убирают склад на причале."
+    
+    $ disable_current_zone()
+    ##$ day2_poisk_necessary_done +=1##
+    jump day2_map_poisk_SMVIJ
+    
+label day2_camp_entrance_SMVIJ:
+    "Точно, подметают у ворот."
+    
+    $ disable_current_zone()
+   ## $ day2_poisk_necessary_done +=1##
+    jump day2_map_poisk_SMVIJ
+
+label day2_forest_SMVIJ:
+    "А может в лесу задание дали?"
+    
+    $ disable_current_zone()
+    ##$ day2_poisk_necessary_done +=1##
+    jump day2_map_poisk_SMVIJ
+    
+label day2_poisk_SMVIJ_mode2:
+    scene ext_polyana_sunset with dissolve
+    "Итак я обошёл все места, но так и не нашёл их."
+    "Я уже опустил руки и решил ждать их после прогулки со Славей."
+    "Скоро должен быть ужин."
+    play music spring fadein 2
+    "Посижу пожалуй подумаю о жизни."
+    "Это место постоянно вызывает поток нескончаемых мыслей, прервать которые может лишь горн на ужин."
+    $ set_mode_nvl()
+    "Итак вот уже второй день я провёл в этом лагере. {w}Тут все не так как я себе представлял, все разные, живые."
+    "У каждого какое-то есть своё дело."
+    "ПРОДОЛЖЕНИЕ ДОПИСАТЬ......................"
+    $ set_mode_adv()
+    stop music fadeout 2
+    "Где же ужин? Может я его пропустил? {w}А нет."
+    play sound sfx_dinner_horn_processed
+    th "Ну чтож, пойдем Семён?"
+    
+    "ПРОДОЛЖЕНИЕ Следует.."
+    
 return

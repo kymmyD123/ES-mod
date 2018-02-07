@@ -18,7 +18,7 @@
     $ bus_engine = "mods/SMVIJPNNN/music/bus_engine.mp3"
     $ nobody_secret = "mods/SMVIJPNNN/music/nobody_secret.mp3"
     $ Sakura = "mods/SMVIJPNNN/music/Sakura.mp3"
-    $ homyak_theme = "mods/SMVIJPNNN/music/homyak_theme.mp3"
+    $ morning = "mods/SMVIJPNNN/music/morning.mp3"
     $ soft_horn = "mods/SMVIJPNNN/music/soft_horn.mp3"
     $ spring = "mods/SMVIJPNNN/music/spring.mp3"
     $ silent_garden = "mods/SMVIJPNNN/music/silent_garden.mp3"
@@ -162,7 +162,7 @@ label SMVIJPNNN_label_1:
     "Она явно в замешательстве."
     sl "Эм..."
     show sl pioneer smile at center
-    extend "Ну меня послала вожатая. Как мне к тебе обращатсья?"
+    extend "Ну меня послала вожатая. Как мне к тебе обращаться?"
     me "Семен."
     "Я указал в сторону ладонью, желая представить Леру, но она решила сделать это сама."
     Ler_SM "А меня Лера."
@@ -175,7 +175,7 @@ label SMVIJPNNN_label_1:
     th "Она что, специально?"
     th "Да быть такого не может. Славя всегда была доброй и отзывчивой, она просто не могла так поступить. Тем более в начале."
     "Я схватил Леру за руку."
-    "Лера посмотрел на меня глазами полными уверенности. Примерно несколько минут назад она плакала, но, видимо, то, что Славя её не замечала, разожгло в ней огонь и она захотела заявить о себе."
+    "Лера посмотрела на меня глазами полными уверенности. Примерно несколько минут назад она плакала, но, видимо, то, что Славя её не замечала, разожгло в ней огонь и она захотела заявить о себе."
     sl "Ну пойдем. Вожатая тебя уже, наверное, заждалась."
     "Я просто не мог выдержать подобной наглости!"
     stop music fadeout 2
