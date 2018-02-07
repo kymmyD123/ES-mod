@@ -992,12 +992,7 @@ label day2_main_SMVIJ_mode2:
             scene ext_stage_normal_day with dissolve
             "Как-то я прогадал, возле сцены была Алиса."
             if d2_Al_scene:
-                th "Пусть играет себе, а я по тихому уйду."
-    
-                
-                
-            else:   
-                th "Пойду пообщаюсь с ней."
+                  th "Пойду пообщаюсь с ней."
                 show dv smile pioneer far at center with dissolve
                 "Она кокетливо спросила."
                 dv "Что послушать пришёл?"
@@ -1016,6 +1011,10 @@ label day2_main_SMVIJ_mode2:
                 dv "Я знаю."
                 me "Ладно, я пойду, меня Ольга Дмитриевна попросила зайти."
                 dv "Ладно, на обеде увидимся."
+                
+                
+            else:   
+                th "Пусть играет себе, а я по тихому уйду."
                 
     scene ext_library_day with dissolve
     $ renpy.pause(1)
@@ -1049,14 +1048,6 @@ label day2_main_SMVIJ_mode2:
     me "Можно присесть с вами?"
     if d2_Al_scene:
         show us normal pioneer far at cleft with dissolve
-        show dv rage pioneer far at cright with dissolve
-        dv "Ты совсем страх потерял?"
-        dv "Ешь стоя."
-        "Мне было все равно на её разговоры, поэтому я просто сел к ним за стол."
-        show us surp2 pioneer far at cleft
-        "Игнорируя их, я закончил трапезу {w}и поспешил удалиться из столовой."
-    else:
-        show us normal pioneer far at cleft with dissolve
         show dv normal pioneer far at cright with dissolve
         dv "Привет, Семён."
         dv "Конечно, присаживайся."
@@ -1064,5 +1055,13 @@ label day2_main_SMVIJ_mode2:
         show dv smile pioneer far at cright
         dv "Сказала же, на обеде увидимся. {w}Приятного аппетита."
         me "И вам того же, девочки."
+    else:
+        show us normal pioneer far at cleft with dissolve
+        show dv rage pioneer far at cright with dissolve
+        dv "Ты совсем страх потерял?"
+        dv "Ешь стоя."
+        "Мне было все равно на её разговоры, поэтому я просто сел к ним за стол."
+        show us surp2 pioneer far at cleft
+        "Игнорируя их, я закончил трапезу {w}и поспешил удалиться из столовой."
         
 return
