@@ -824,7 +824,6 @@ label day2_library_SMVIJ:
                 un "Здравствуй Виола."
                 cs "Привет, Леночка, ничего себе у тебя шишка."
                 cs "Сейчас, я подпишу пионеру обходной и приду к тебе"
-                show cs normal glasses close at center 
                 me "Меня Семёном зовут."
                 cs "Хорошо, Семён, давай обходной."
                 "Она взяла лист, подписала его и сказала."
@@ -994,6 +993,8 @@ label day2_main_SMVIJ_mode2:
             "Как-то я прогадал, возле сцены была Алиса."
             if d2_Al_scene:
                 th "Пусть играет себе, а я по тихому уйду."
+    
+                
                 
             else:   
                 th "Пойду пообщаюсь с ней."
@@ -1013,5 +1014,55 @@ label day2_main_SMVIJ_mode2:
                 stop music fadeout 2
                 me "Очень красиво играешь."
                 dv "Я знаю."
-    
+                me "Ладно, я пойду, меня Ольга Дмитриевна попросила зайти."
+                dv "Ладно, на обеде увидимся."
+                
+    scene ext_library_day with dissolve
+    $ renpy.pause(1)
+    scene ext_houses_day with dissolve          
+    play sound sfx_dinner_horn_processed
+    "Не успел я дойти до нашего домика, как прозвучал горн на обед."
+    th "Ну что, потопали на обед?"
+    scene ext_dining_hall_away_day with dissolve
+    "Я подошёл к столовой и принялся ждать."
+    $ renpy.pause(2)
+    scene black with dissolve
+    $ renpy.pause(2)
+    scene ext_dining_hall_near_day with dissolve
+    "Я прождал минут 10, но Леры и Кристины не было видно."
+    th "Может быть они уже в столовой?"
+    "Внезапно ко мне подошла вожатая."
+    show mt normal pioneer far at center with dissolve
+    mt "Семён, а ты чего сидишь тут?"
+    me "Да я вот Кристину жду."
+    mt "Её не будет на обеде, я ей слишком сложное задание дала, поэтому она придёт только к ужину."
+    "Да что это за задание такое? {w}Где мне теперь искать Леру?"
+    "Ладно, ничего не поделать, придётся кушать без них."
+    me "Хорошо, тогда пойду в столовую."
+    mt "Приятного аппетита."
+    play ambience ambience_dining_hall_full fadein 1
+    scene int_dining_hall_people_day with dissolve
+    "Я вошёл в столовую."
+    "Столовая была набита полностью пионерами."
+    "Место лишь было рядом с Ульяной и Алисой."
+    "Я взял поднос с едой и направился к столику."
+    me "Можно присесть с вами?"
+    if d2_Al_scene:
+        show us normal pioneer far at cleft with dissolve
+        show dv rage pioneer far at cright with dissolve
+        dv "Ты совсем страх потерял?"
+        dv "Ешь стоя."
+        "Мне было все равно на её разговоры, поэтому я просто сел к ним за стол."
+        show us surp2 pioneer far at cleft
+        "Игнорируя их, я закончил трапезу {w}и поспешил удалиться из столовой."
+    else:
+        show us normal pioneer far at cleft with dissolve
+        show dv normal pioneer far at cright with dissolve
+        dv "Привет, Семён."
+        dv "Конечно, присаживайся."
+        "Я послушно взял стул и присел."
+        show dv smile pioneer far at cright
+        dv "Сказала же, на обеде увидимся. {w}Приятного аппетита."
+        me "И вам того же, девочки."
+        
 return
