@@ -772,7 +772,6 @@ label day2_library_SMVIJ:
             show un surprise pioneer close at center
             un "Нет, уже почти не болит."
             if d2_med_sv_vh == False :
-#"ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЕН ЕЩЕ НЕ БЫЛ В МЕДПУНКТЕ."
                 me "Все равно надо в мед пункт сходить, я там ещё не был, как раз подпишу обходной лист."
                 show un shy pioneer close at center
                 un "Ну тогда нам по пути. Пойдём?"
@@ -780,7 +779,6 @@ label day2_library_SMVIJ:
                 
                 
             else:
-#"ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЁН УЖЕ БЫЛ В МЕДПУНКЕ."
                 me "Все равно надо сходить в мед пункт, медсестра как раз там сидит, я недавно подписывал обходной там."
                 show un shy pioneer close at center
                 un "А ты не опоздаешь другие подписывать?"
@@ -805,7 +803,6 @@ label day2_library_SMVIJ:
             
             
             if d2_med_sv_vh == False :
-#"ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЕН ЕЩЕ НЕ БЫЛ В МЕДПУНКТЕ."
                 show un normal pioneer close at center with dissolve
                 un "Пойдём?"
                 me "Да, конечно, мне же ещё надо подписать его."
@@ -833,7 +830,6 @@ label day2_library_SMVIJ:
                 "С этими словами я удалился из медпункта."
                 
             else:
-                "ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЁН УЖЕ БЫЛ В МЕДПУНКЕ."
                 show un normal pioneer close at center with dissolve
                 un "Пойдёшь?"
                 me "Да, давай я тебя провожу."
@@ -857,7 +853,6 @@ label day2_library_SMVIJ:
             scene ext_aidpost_day with dissolve
             
             if d2_med_sv_vh == False :
-#"ЗДЕСЬ НУЖНО ПРОПИСЫВАТЬ ТО, ЧТО БЫЛО БЫ ЕСЛИ СЕМЕН ЕЩЕ НЕ БЫЛ В МЕДПУНКТЕ."
                 "Странные события, ну да ладно."
                 "Вот ещё одна подпись."     
                 $ reset_zone("medic_house")
@@ -1158,7 +1153,10 @@ label day2_forest_SMVIJ:
 label day2_poisk_SMVIJ_mode2:
     scene ext_polyana_sunset with dissolve
     "Итак я обошёл все места, но так и не нашёл их."
-    "Я уже опустил руки и решил ждать их после прогулки со Славей."
+    if d2_SL_svidanka:
+        "Я уже опустил руки и решил ждать их после прогулки со Славей."
+    else:
+        "Я уже опустил руки и решил ждать их после ужина."
     "Скоро должен быть ужин."
     play music spring fadein 2
     "Посижу пожалуй подумаю о жизни."
@@ -1172,7 +1170,20 @@ label day2_poisk_SMVIJ_mode2:
     "Где же ужин? Может я его пропустил? {w}А нет."
     play sound sfx_dinner_horn_processed
     th "Ну чтож, пойдем Семён?"
-    
-    "ПРОДОЛЖЕНИЕ Следует.."
-    
+    scene ext_square_sunset with dissolve
+    $ renpy.pause (2)
+    scene ext_dining_hall_away_sunset with dissolve
+    play music soft_horn fadein 2
+    "Возле столовой столпилось много народу во главе с Ольгой Дмитриевной и что-то буйно обсуждали."
+    "Что же случилось?"
+    "Неужели девочки пропали."
+    "Очень много тревожных мыслей начали посещать меня в этот момент."
+    "А если они заблудились в лесу?"
+    "Стоит подойти к ним."
+    "Немогу сдвинуться с места, очень переживаю, чтоже случилось?"
+    th "Так, Семён, соберись, ничего такого. {w}Пошли!"
+    scene ext_dining_hall_near_sunset with dissolve
+    show mt normal pioneer far at center with dissolve
+    show sl normal pioneer far at cleft with dissolve 
+    show mi smile pioneer far at cright with dissolve
 return
