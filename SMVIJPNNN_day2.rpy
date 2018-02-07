@@ -33,10 +33,17 @@
     $ d2_Lena_nnd = False
     $ d2_Miku_plastinka = False
     
+    $ day2_poisk_necessary_done = 0
+    
     $ d2_clubs_smv_vh = False
     $ d2_muzclub_smv_vh = False
     $ d2_library_smv_vh = False
     $ d2_aidpost_smv_vh = False
+    
+    $ d2_sport_area_smv_vh = False
+    $ d2_boat_station_smv_vh = False
+    $ d2_camp_entrance_smv_vh = False
+    $ d2_forest_smv_vh = False
     
     
     $ d2_MT_palevo = False
@@ -982,7 +989,9 @@ label day2_main_SMVIJ_mode2:
             "Я решил, что лучшим решением будет встретиться с ними на обеде и отправился к домику."
             
         "Сцена":
-            "Они могут убирать сцену."
+            "Сегодня Славя целый день вьётся вокруг меня."
+            "Сцена наверняка пустует и пылится."
+            "Лера с Кристиной могут вполне убирать сцену {w}я направлюсь туда"
             scene ext_library_day with dissolve
             $ renpy.pause(1)
             scene ext_stage_normal_day with dissolve
@@ -990,11 +999,11 @@ label day2_main_SMVIJ_mode2:
             if d2_Al_scene:
                 th "Пойду пообщаюсь с ней."
                 show dv smile pioneer far at center with dissolve
-                "Она кокетливо спросила."
+                "Она с усмешкой спросила."
                 dv "Что послушать пришёл?"
                 show dv shy pioneer far at center
                 me "Ну может быть и так."
-                dv "Ну присаживайся, послушай."
+                dv "Ну тогда садись, чего пришёл, слушай."
                 show dv smile pioneer far at center
                 play music alice_guitar fadein 2
                 scene d3_dv_scene_2 with dissolve
@@ -1006,9 +1015,7 @@ label day2_main_SMVIJ_mode2:
                 me "Очень красиво играешь."
                 dv "Я знаю."
                 me "Ладно, я пойду, меня Ольга Дмитриевна попросила зайти."
-                dv "Ладно, на обеде увидимся."
-                
-                
+                dv "Валяй, на обеде свидимся."
             else:   
                 th "Пусть играет себе, а я по тихому уйду."
                 
@@ -1039,18 +1046,21 @@ label day2_main_SMVIJ_mode2:
     scene int_dining_hall_people_day with dissolve
     "Я вошёл в столовую."
     "Столовая была набита полностью пионерами."
-    "Место лишь было рядом с Ульяной и Алисой."
+    "Место было лишь рядом с Ульяной и Алисой."
+    th "Ну выбора у меня нет."
     "Я взял поднос с едой и направился к столику."
     me "Можно присесть с вами?"
     if d2_Al_scene:
         show us normal pioneer far at cleft with dissolve
         show dv normal pioneer far at cright with dissolve
         dv "Привет, Семён."
-        dv "Конечно, присаживайся."
+        dv "Плюхайся."
+        "Она глазами указала на стул рядом."
         "Я послушно взял стул и присел."
         show dv smile pioneer far at cright
-        dv "Сказала же, на обеде увидимся. {w}Приятного аппетита."
+        dv "Сказала же, на обеде свидимся. {w}Приятного аппетита."
         me "И вам того же, девочки."
+        "ДОПИСАТЬ МОНОЛОГ."
         $ renpy.pause(2)
         scene black with dissolve
         $ renpy.pause(2)
@@ -1067,7 +1077,7 @@ label day2_main_SMVIJ_mode2:
         dv "Ешь стоя."
         "Мне было все равно на её разговоры, поэтому я просто сел к ним за стол."
         show us surp2 pioneer far at cleft
-        "Игнорируя их, я закончил трапезу {w}и поспешил удалиться из столовой."
+        "Игнорируя их, я закончил трапезу. {w}Позже, я поспешил удалиться из столовой."
     
     play ambience ambience_camp_center_day fadeout 2 fadein 1 
     scene ext_dining_hall_near_day with dissolve    
@@ -1116,38 +1126,110 @@ label day2_main_SMVIJ_mode2:
     jump day2_map_poisk_SMVIJ
     
 label day2_map_poisk_SMVIJ:
-    ##if day2_poisk_necessary_done == 4:            ОШИБКА,НЕ ХОЧЕТ ВЫЯВЛЯТЬ ПЕРЕМЕННУЮ##
-    if day2_map_necessary_done == 4:
+    if day2_poisk_necessary_done == 4:
         jump day2_poisk_SMVIJ_mode2
         
     $ show_map()
     
 label day2_sport_area_SMVIJ:
-    "Может они убирают спорт площадку?"
+    if d2_sport_area_smv_vh == False and d2_forest_smv_vh == False and d2_boat_station_smv_vh == False and d2_camp_entrance_smv_vh == False :
+        scene ext_dining_hall_near_sunset with dissolve
+    if d2_sport_area_smv_vh == True:
+        scene ext_playground_sunset with dissolve
+    if d2_boat_station_smv_vh == True:
+        scene ext_boathouse_sunset with dissolve
+    if d2_camp_entrance_smv_vh == True:
+        scene ext_no_bus_sunset with dissolve
+    if d2_forest_smv_vh == True:
+        scene ext_path_sunset with dissolve
+    
+    
+    scene ext_playground_day with dissolve
+    "Может они убирают спортплощадку?"
+    
+    $ d2_sport_area_smv_vh = True
+    $ d2_boat_station_smv_vh = False
+    $ d2_camp_entrance_smv_vh = False
+    $ d2_forest_smv_vh = False
     
     $ disable_current_zone()
-    ##$ day2_poisk_necessary_done +=1##
+    $ day2_poisk_necessary_done +=1
     jump day2_map_poisk_SMVIJ
     
 label day2_boat_station_SMVIJ:
+    if d2_sport_area_smv_vh == False and d2_forest_smv_vh == False and d2_boat_station_smv_vh == False and d2_camp_entrance_smv_vh == False :
+        scene ext_dining_hall_near_sunset with dissolve
+    if d2_sport_area_smv_vh == True:
+        scene ext_playground_sunset with dissolve
+    if d2_boat_station_smv_vh == True:
+        scene ext_boathouse_sunset with dissolve
+    if d2_camp_entrance_smv_vh == True:
+        scene ext_no_bus_sunset with dissolve
+    if d2_forest_smv_vh == True:
+        scene ext_path_sunset with dissolve
+        
+        
+    scene ext_boathouse_day with dissolve
     "Хм, наверное убирают склад на причале."
     
+    $ d2_sport_area_smv_vh = False
+    $ d2_boat_station_smv_vh = True
+    $ d2_camp_entrance_smv_vh = False
+    $ d2_forest_smv_vh = False
+    
     $ disable_current_zone()
-    ##$ day2_poisk_necessary_done +=1##
+    $ day2_poisk_necessary_done +=1
     jump day2_map_poisk_SMVIJ
     
 label day2_camp_entrance_SMVIJ:
+    if d2_sport_area_smv_vh == False and d2_forest_smv_vh == False and d2_boat_station_smv_vh == False and d2_camp_entrance_smv_vh == False :
+        scene ext_dining_hall_near_sunset with dissolve
+    if d2_sport_area_smv_vh == True:
+        scene ext_playground_sunset with dissolve
+    if d2_boat_station_smv_vh == True:
+        scene ext_boathouse_sunset with dissolve
+    if d2_camp_entrance_smv_vh == True:
+        scene ext_no_bus_sunset with dissolve
+    if d2_forest_smv_vh == True:
+        scene ext_path_sunset with dissolve
+        
+        
+    scene ext_no_bus_day with dissolve
     "Точно, подметают у ворот."
     
+    $ d2_sport_area_smv_vh = False
+    $ d2_boat_station_smv_vh = False
+    $ d2_camp_entrance_smv_vh = True
+    $ d2_forest_smv_vh = False
+    
     $ disable_current_zone()
-   ## $ day2_poisk_necessary_done +=1##
+    $ day2_poisk_necessary_done +=1
     jump day2_map_poisk_SMVIJ
 
 label day2_forest_SMVIJ:
+    if d2_sport_area_smv_vh == False and d2_forest_smv_vh == False and d2_boat_station_smv_vh == False and d2_camp_entrance_smv_vh == False :
+        scene ext_dining_hall_near_sunset with dissolve
+    if d2_sport_area_smv_vh == True:
+        scene ext_playground_sunset with dissolve
+    if d2_boat_station_smv_vh == True:
+        scene ext_boathouse_sunset with dissolve
+    if d2_camp_entrance_smv_vh == True:
+        scene ext_no_bus_sunset with dissolve
+    if d2_forest_smv_vh == True:
+        scene ext_path_sunset with dissolve
+        
+        
+    scene ext_path_day with dissolve
     "А может в лесу задание дали?"
     
+    
+    $ d2_sport_area_smv_vh = False
+    $ d2_boat_station_smv_vh = False
+    $ d2_camp_entrance_smv_vh = False
+    $ d2_forest_smv_vh = True
+    
     $ disable_current_zone()
-    ##$ day2_poisk_necessary_done +=1##
+    $ day2_poisk_necessary_done +=1
     jump day2_map_poisk_SMVIJ
     
 label day2_poisk_SMVIJ_mode2:
@@ -1182,8 +1264,16 @@ label day2_poisk_SMVIJ_mode2:
     "Стоит подойти к ним."
     "Немогу сдвинуться с места, очень переживаю, чтоже случилось?"
     th "Так, Семён, соберись, ничего такого. {w}Пошли!"
-    scene ext_dining_hall_near_sunset with dissolve
-    show mt normal pioneer far at center with dissolve
-    show sl normal pioneer far at cleft with dissolve 
-    show mi smile pioneer far at cright with dissolve
+    scene ext_dining_hall_near_sunset 
+    show mt normal pioneer far at center 
+    show sl normal pioneer far at cright
+    show el normal pioneer far at cleft 
+    show dv normal pioneer far at left 
+    show us normal pioneer far at left 
+    show mi smile pioneer far at right
+    with dissolve
+    "Мику улыбается."
+    stop music fadeout 2
+    "Мне стало поспокойнее. {w}Они всего лишь планируют игру в карты."
+    
 return
