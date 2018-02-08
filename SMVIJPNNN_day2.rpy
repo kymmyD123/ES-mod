@@ -25,7 +25,7 @@
     
     
     $ ES_Alisa_comfort_points_SMVIJ = 0
-    
+    $ ES_Ulya_comfort_points_SMVIJ = 0
     $ ES_Lena_comfort_points_SMVIJ = 0
     $ ES_Miku_comfort_points_SMVIJ = 0
     
@@ -814,6 +814,7 @@ label day2_library_SMVIJ:
                 un "Пойдём?"
                 me "Да, конечно, мне же ещё надо подписать его."
                 "С этими словами мы вошли в медпункт."
+                play ambience ambience_medstation_inside_day fadeout 1 fadein 2
                 scene int_aidpost_day with dissolve
                 "Я вошёл первым."
                 "Как я и думал, медсестра сидела за столом {w}и заполняла какие-то бумаги."
@@ -842,6 +843,7 @@ label day2_library_SMVIJ:
                 me "Да, давай я тебя провожу."
                 un "Хорошо."
                 "С этими словами мы вошли в медпункт."
+                play ambience ambience_medstation_inside_day fadeout 1 fadein 2
                 scene int_aidpost_day with dissolve
                 "Я вошёл первым."
                 "Как я и думал, Виола сидела за столом {w}и заполняла какие-то бумаги."
@@ -929,6 +931,7 @@ label day2_aidpost_SMVIJ:
     th "Собрались!"
     play sound sfx_knock_door6_closed
     cs "Войдите."
+    play ambience ambience_medstation_inside_day fadeout 1 fadein 2
     scene int_aidpost_day with dissolve
     "Виола сидела за столом и разбиралась с какими-то бумагами."
     show cs normal glasses far at center with dissolve
@@ -980,6 +983,7 @@ label day2_main_SMVIJ_mode2:
     menu:
         "Пляж":
             "Я решил, что они вполне могли пойти на пляж."
+            "После трудного дня любой захочет расслабиться у берега в теплом песочке."
             scene ext_dining_hall_away_day with dissolve
             $ renpy.pause(1)
             play ambience ambience_boat_station_day fadeout 2 fadein 1
@@ -991,7 +995,7 @@ label day2_main_SMVIJ_mode2:
         "Сцена":
             "Сегодня Славя целый день вьётся вокруг меня."
             "Сцена наверняка пустует и пылится."
-            "Лера с Кристиной могут вполне убирать сцену {w}я направлюсь туда"
+            "Лера с Кристиной могут вполне убирать сцену. {w}Я направлюсь туда"
             scene ext_library_day with dissolve
             $ renpy.pause(1)
             scene ext_stage_normal_day with dissolve
@@ -1000,7 +1004,7 @@ label day2_main_SMVIJ_mode2:
                 th "Пойду пообщаюсь с ней."
                 show dv smile pioneer far at center with dissolve
                 "Она с усмешкой спросила."
-                dv "Что послушать пришёл?"
+                dv "Что, послушать пришёл?"
                 show dv shy pioneer far at center
                 me "Ну может быть и так."
                 dv "Ну тогда садись, чего пришёл, слушай."
@@ -1095,12 +1099,12 @@ label day2_main_SMVIJ_mode2:
         show sl normal pioneer close at center
         me "Вовсе и не дурочка, просто забыла {w}со всеми бывает."
         show sl smile pioneer close at center
-        sl "Ладно, смотри после ужина иди на пляж, там и встретимся."
+        sl "Ладно, смотри,  после ужина иди на пляж, там и встретимся."
         me "Хорошо, я все понял."
         sl "Ладно, Семён, долг зовёт, я пойду."
         me "До встречи."
         sl "До встречи."
-        hide sl
+        hide sl with dspr
         "Она встала со скамейки и убежала за столовую."
             
     else:
@@ -1133,19 +1137,132 @@ label day2_map_poisk_SMVIJ:
     
 label day2_sport_area_SMVIJ:
     if d2_sport_area_smv_vh == False and d2_forest_smv_vh == False and d2_boat_station_smv_vh == False and d2_camp_entrance_smv_vh == False :
-        scene ext_dining_hall_near_sunset with dissolve
+        scene ext_dining_hall_near_day with dissolve
     if d2_sport_area_smv_vh == True:
-        scene ext_playground_sunset with dissolve
+        scene ext_playground_day with dissolve
     if d2_boat_station_smv_vh == True:
-        scene ext_boathouse_sunset with dissolve
+        scene ext_boathouse_day with dissolve
     if d2_camp_entrance_smv_vh == True:
-        scene ext_no_bus_sunset with dissolve
+        scene ext_no_bus with dissolve
     if d2_forest_smv_vh == True:
-        scene ext_path_sunset with dissolve
+        scene ext_path_day with dissolve
     
     
     scene ext_playground_day with dissolve
     "Может они убирают спортплощадку?"
+    "Хотя что они там забыли?"
+    "Наша вожатая непредсказуема, поэтому стоит проверить."
+    play ambience ambience_soccer_play_background fadeout 1 fadein 2
+    scene ext_playground_day with dissolve
+    "На площадке было много детворы, но ни Леры, ни Кристины я не увидел."
+    "Тут одна фигура подбжала ко мне."
+    show us smile pioneer at center with dissolve
+    us "О, Семён. А что ты тут забыл?"
+    me "Да я тут ищу кое-кого."
+    us "Ну это может подождать. Пойдем с нами поиграем?"
+    me "Ну... Я не знаю, я давно не играл в футбол."
+    show us grin pioneer at center
+    us "Ой, да ты что. У нас таких вся команда, кроме меня, конечно. Выделяться не будешь."
+    th "Стоит ли? Может всё таки сыграть чуть-чуть?"
+    us "Ну так что, ты идешь?"
+    menu:
+        "Поиграть":
+            $ ES_girls_comfort_points_SMVIJ += 1
+            $ ES_Ulya_comfort_points_SMVIJ += 1
+            th "А почему бы и нет? Раз она говорит, что там таких же вся команда, то я могу попробовать."
+            me "Ну давай, только чуть-чуть."
+            show us laugh pioneer at center 
+            us "Ура! {w}Давай быстрее на поле!"
+            "Я послушно побежал за Ульяной на поле."
+            hide us with dspr
+            "Вокруг была детвора лет так 12-14, но не больше."
+            th "А, ну так это будет легко."
+            $ set_mode_nvl()
+            "Свисток. Мяч в игре. {w}Так получилось, что мы с Ульяной в разных командах. {w}Ну это не важно, у неё вся команда вафельная, думаю, что я смогу что-то сделать."
+            "Инициативу берет на себя команда Ульяны, а если быть точным, то только Ульяна. Она, обводя противников, подходит к воротам, где я уже стою и жду её мяча."
+            "УДАР! {w}Мяч прилетает прямо ко мне в руки."
+            me "И это всё, что ты можешь?"
+            us "Ну я тебе еще покажу."
+            "Она попыталась скорчить страшную гримассу, но получилось просто забавно. {w}Я кое-как сдержал смех."
+            "Правил у нас не было четких, поэтому мне мои союзники дали право выйти в атаку."
+            "Мяч опустился на землю, я уже готов к атаке. {w}Пульсация идет бешеным темпом, то ли от выброса адреналина, то ли от страха облажаться."
+            "Плевать, вот и мой момент."
+            "Я выхожу с середины поля, отдав пас ближайшему союзнику. {w}Он обработал мяч и ведет его к створу ворот."
+            "Обратный пас не заставил себя ждать, мяч летит ко мне. {w}Мяч катится по полю, пролетая сквозь противников. {w}Я взял мяч и теперь буду один, ибо я вышел на финальную стадию."
+            "Передо мной стоит маленький, полный мальчик. {w}Мда... Правила дворового футбола: самый толстый на ворота. {w}Я не стал пробивать со всей силы, потому что побоялся попасть в мальчика."
+            "Вместо этого я показал, что хочу бить в правый нижний угол. Одного моего взгляда и замаха хватило, чтобы парень подумал так, как я хотел. Он сместился вправо. Именно это мне и было нужно."
+            "Я слабенько толкнул мяч в левый угол. Глаза парня чуть не вылетели из орбит. Он понимает, что допустил ошибку, но мяч уже приближается к воротам."
+            play sound sfx_soccer_ball_gate
+            "Мяч попал в ворота, счет открыт. 1:0 в нашу пользу."
+            us "Эй! Так не честно."
+            me "Почему-то я ждал этого выкрика."
+            us "Ну всё, сейчас ты у меня попляшешь."
+            "Я понял, что сейчас она будет стараться изо всех сил, поэтому отбежал чуть назад."
+            "Я дал сигнал своему напарнику, что теперь я на воротах. Кивнув, он уступил мне место вратаря."
+            nvl clear
+            "Свисток, мяч снова в игре. {w}Ульяна дала пас какому-то пареньку. Он очень даже хорош, проходит все степени защиты одна за другой."
+            "Пас идет Ульяне, и она с радостью его принимает. {w}С огнём в глазах она прорывает последнею степень защиты и направляется ко мне."
+            "Выход один на один, облажаться нельзя. {w}Она подходит ближе и ближе. По моей щеке стекают капли пота, но я стараюсь держать концентрацию."
+            show d3_soccer with dspr
+            "Ульяна замахивается и мяч отправляется в свободный полет."
+            "Я встал в позу и был готов ловить мяч. {w}Мяч летел в девятку, так что я попытался дотянуться... {w}Но не смог. Мяч коснулся моих пальцев и всё равно упал в ворота."
+            hide d3_soccer with dspr
+            us "Ну что, как теперь петь будешь?"
+            me "Мы пока не закончили."
+            "Счет 1:1, и только я могу его изменить."
+            "Свисток, мяч в игре. {w}Я вспомнил все свои умения, которые мне могли тут пригодиться, напряг все свои мышцы и готов был сносить каждого на пути."
+            mi "Семён, покажи им!"
+            "Чччт0000000оооооооо? {w}Я посмотрел налево, а там Мику всеми силами пытается поддержать меня. Она уже поговорила с девочкой, которая ведет счет, чтобы быть в курсе событий."
+            "Удивительно, что она еще плакат не принесла и шарф не нацепила. {w}Значит сейчас мне надо постараться на все сто процентов."
+            "Свисток уже был, а я всё стою, и это было моей первой ошибкой. Толпа голодных пацанов и одна девочка бегут ко мне навстречу с желанием съесть меня живьем."
+            "Я отдал пас своему союзнику, а он, понимая что к чему, отдал пас обратно, когда я пробежал через барикаду из зомби-школьников."
+            "Мяч катится по земле и скоро оказывается у меня. Я принимаю его и продвигаюсь вперед."
+            "Всё тот же парень стоит на воротах, он не показывает страх, в глазах его одна решимость. {w}Я понял, что сейчас, когда на меня смотрят, я просто не могу облажаться, поэтому я замахнулся так, что аж Мику ахнула."
+            "Парень даже не шалохнулся, что меня поразило. На него бежит парень в два раза его выше, замахивается со всей силы, а он даже не моргнул."
+            "Я замахнулся и начал ударять, парень прыгнул в бок, желая поймать мяч, но тут он прогадал, я всего лишь замахивался."
+            nvl clear
+            "Как только парень оказался на земле, мне было достаточно только пнуть мяч в другую сторону, что я и сделал."
+            "Мяч катится и катится. {w}Вскоре он остановился за линией, даже не коснувшись сетки."
+            "Счёт 2:1 в нашу пользу."
+            $ set_mode_adv()
+            me "Ну дальше как-нибудь сами, я в вас верю."
+            show us normal pioneer at center with dissolve
+            us "Эй, ты куда?"
+            me "Мне надо поговорить с Мику, да и выдохся я слегка."
+            show us grin pioneer at center
+            us "Слабак! Ну и валяй."
+            hide us with dspr
+            "С этими словами Ульяна развернулась и побежала к своей команде."
+            "Я, стараясь дышать ровно, подошел к Мику."
+            show mi smile pioneer at center with dissolve
+            me "Мику, привет еще раз. Ты не видела Кристину?"
+            mi "Кристину? Нет, сегодня я её не видела. {w}Кстати, мог бы и детишкам дать поиграть, а то один играл только."
+            th "А кто это сейчас поднимал флаги в мою честь? {w}Этих девушек не поймешь."
+            me "А ты чего не в клубе, кстати."
+            show mi laugh pioneer at center
+            mi "Ну не буду же я там сидеть всё время."
+            me "Ну да, верно. Ладно, я тогда пойду. До встречи."
+            show mi smile pioneer at center
+            mi "Удачи. Заходи в клуб, если что."
+            me "Договорились."
+            hide mi with dspr
+            "Я развернулся и направился на дальнейшие поиски."
+            
+            
+            
+            
+            
+            
+            
+        "Отказаться":
+            th "Нет, мне надо Леру искать."
+            me "Прости, Уля, надо идти искать Кристину, у меня к ней одно дело."
+            $ ES_Lera_comfort_points_SMVIJ += 1
+            show us grin pioneer at center
+            us "Ну и валяй, а я пошла."
+            hide us with dspr
+            "Ульяна убежала, а я пошел на дальшейшие поиски."
+    
     
     $ d2_sport_area_smv_vh = True
     $ d2_boat_station_smv_vh = False
@@ -1158,19 +1275,58 @@ label day2_sport_area_SMVIJ:
     
 label day2_boat_station_SMVIJ:
     if d2_sport_area_smv_vh == False and d2_forest_smv_vh == False and d2_boat_station_smv_vh == False and d2_camp_entrance_smv_vh == False :
-        scene ext_dining_hall_near_sunset with dissolve
+        scene ext_dining_hall_near_day with dissolve
     if d2_sport_area_smv_vh == True:
-        scene ext_playground_sunset with dissolve
+        scene ext_playground_day with dissolve
     if d2_boat_station_smv_vh == True:
-        scene ext_boathouse_sunset with dissolve
+        scene ext_boathouse_day with dissolve
     if d2_camp_entrance_smv_vh == True:
-        scene ext_no_bus_sunset with dissolve
+        scene ext_no_bus with dissolve
     if d2_forest_smv_vh == True:
-        scene ext_path_sunset with dissolve
+        scene ext_path_day with dissolve
         
-        
+    $ renpy.pause(2, hard=True)
     scene ext_boathouse_day with dissolve
-    "Хм, наверное убирают склад на причале."
+    "На причале тоже пусто, пионеров совсем нет, только я один."
+    "Я присел на край причала и свесил ноги к воде, смотря в своё отражение на воде."
+    "Легкая рябь на воде то дело и пытается исказить его, но это удается ей с трудом."
+    "Я провел так в мыслях некоторое время."
+    "Пока меня не потривожили..."
+    show mt normal pioneer at center with dissolve
+    mt "Семён, а что это мы тут прохлаждаемся? Бегунок кто заполнять будет?"
+    th "Вот же появляется не в том месте и не в то время... Прямо как призрак."
+    me "Да я уже всё заполнил."
+    show mt smile pioneer at center
+    mt "Тогда давай сюда."
+    "Я протянул заполненный листок."
+    "Вожатая сложила его пополам и сунула в карман."
+    th "Ну, ничего другого я и не ожидал. Может стоило сразу заполнить его от своей руки? Она же всё равно не поверяет."
+    if d2_MT_palevo:
+        show mt angry pioneer at center
+        mt "Семён, а что ты сегодня у склада делал? И почему не остановился?"
+        th "Ох блин... Хотя этот разговор всё равно должен был рано или поздно состояться."
+        me "А вы мне что-то кричали? Я не слышал, честно."
+        "Я решил играть в глухого дурака."
+        show mt normal pioneer at center
+        mt "Ну ладно, а что ты там делал?"
+        me "Я искал умывальники, но потом понял, что пришел совершенно не туда, а потом в далеке я увидел пионера какого-то, вот и решил у него спросить."
+        "Вожатая некоторое время пребывает в ступоре."
+        show mt smile pioneer at center
+        mt "Ладно, будем считать, что ты меня убедил."
+        me "Почему убедил? Я же правду говорю."
+        mt "Да верю-верю я тебе, Семён, не волнуйся ты так. Только подозрений добавляешь."
+        
+        
+    mt "Долго тут будешь сидеть?"
+    me "Нет, я уже скоро хотел уходить."
+    mt "Ну ладно, а я уже пойду, дел еще много."
+    me "Да, хорошо."
+    hide mt with dspr
+    "Вожатая развернулась и ушла по своим делам."
+    "Я же остался опять один."
+    th "Мне тоже пора выдвигаться."
+    "Я встал и сделал маленькую разминку, потому что ноги затекли."
+    th "Надо идти дальше."
     
     $ d2_sport_area_smv_vh = False
     $ d2_boat_station_smv_vh = True
@@ -1183,19 +1339,24 @@ label day2_boat_station_SMVIJ:
     
 label day2_camp_entrance_SMVIJ:
     if d2_sport_area_smv_vh == False and d2_forest_smv_vh == False and d2_boat_station_smv_vh == False and d2_camp_entrance_smv_vh == False :
-        scene ext_dining_hall_near_sunset with dissolve
+        scene ext_dining_hall_near_day with dissolve
     if d2_sport_area_smv_vh == True:
-        scene ext_playground_sunset with dissolve
+        scene ext_playground_day with dissolve
     if d2_boat_station_smv_vh == True:
-        scene ext_boathouse_sunset with dissolve
+        scene ext_boathouse_day with dissolve
     if d2_camp_entrance_smv_vh == True:
-        scene ext_no_bus_sunset with dissolve
+        scene ext_no_bus with dissolve
     if d2_forest_smv_vh == True:
-        scene ext_path_sunset with dissolve
+        scene ext_path_day with dissolve
         
-        
-    scene ext_no_bus_day with dissolve
-    "Точно, подметают у ворот."
+    "Точно, они вполне могут быть у ворот. Убирать там или просто лицезреть дали этой локации, потому что полноценным миром это точно не назвать."    
+    scene ext_no_bus with dissolve
+    "Здесь пусто..."
+    "Я осмотрелся по сторонам, ни души."
+    "Только ветер треплет волосы и шепчет на ухо что-то непонятное."
+    "Мне здесь делать больше нечего, надо бы отправляться."
+    
+    
     
     $ d2_sport_area_smv_vh = False
     $ d2_boat_station_smv_vh = False
@@ -1208,19 +1369,75 @@ label day2_camp_entrance_SMVIJ:
 
 label day2_forest_SMVIJ:
     if d2_sport_area_smv_vh == False and d2_forest_smv_vh == False and d2_boat_station_smv_vh == False and d2_camp_entrance_smv_vh == False :
-        scene ext_dining_hall_near_sunset with dissolve
+        scene ext_dining_hall_near_day with dissolve
     if d2_sport_area_smv_vh == True:
-        scene ext_playground_sunset with dissolve
+        scene ext_playground_day with dissolve
     if d2_boat_station_smv_vh == True:
-        scene ext_boathouse_sunset with dissolve
+        scene ext_boathouse_day with dissolve
     if d2_camp_entrance_smv_vh == True:
-        scene ext_no_bus_sunset with dissolve
+        scene ext_no_bus with dissolve
     if d2_forest_smv_vh == True:
-        scene ext_path_sunset with dissolve
+        scene ext_path_day with dissolve
         
-        
-    scene ext_path_day with dissolve
     "А может в лесу задание дали?"
+    "Вожатая сегодня всё время твердит о каком-то задании. Если оно сложное, то это точно не уборка какая-то. Надо бы проверить лес."
+    scene ext_path_day with dissolve
+    "Я вышел на лесную тропинку и стал осмотривать местность."
+    "Тишина, только птички украшают эту пустоту."
+    th "Может Крикнуть?"
+    th "Можно попробовать."
+    me "Кристина!!"
+    "Эхом это имя отдалось мне..."
+    th "Значит пусто..."
+    un "Напугал ты меня..."
+    "Спустя какое-то время Лена показалась из кустов."
+    show un normal pioneer at center
+    un "Зачем так кричать?"
+    me "Да я просто весь лагерь обыскал, да вот найти Кристину всё никак не могу. Ты её не видела?"
+    "Лена только покачала головой."
+    "И только потом я заметил в руках у неё блокнот."
+    me "А что это?"
+    "Я указал пальцем на блокнот."
+    show un shy pioneer at center
+    un "Это... Просто блокнот, там ничего."
+    "Не знаю, какая пчела меня укусила, но я хотел узнать, что в этом блокноте."
+    me "А можно мне посмотреть?"
+    un "За-зачем?..."
+    me "Ну просто интересно. Может и я что-то нарисую."
+    show un smile pioneer at center
+    un "Только на чуть-чуть."
+    "Она трясущимися руками протягивает блокнот."
+    "Я взял его и раскрыл на первой странице."
+    "Пусто."
+    "Вторая страница."
+    "Пусто."
+    "Третья страница."
+    "Пусто."
+    "Я решил перемотать на середину."
+    "А вот тут уже что-то есть, но написано карандашом."
+    show un scared pioneer at center
+    un "Не смотри!"
+    "Но её слов было не достаточно, я уже давно успел прочитать всё, что было написано на это странице."
+    "{i}Он медленно сигару закурил,{/i}"
+    "{i}Рука коснулась талии моей,{/i}"
+    "{i}Запоминая все мои детали,{/i}"
+    "{i}Наушко шёпотом спросил....{/i}"
+    "Всего одно четверостишье."
+    $ ES_Lena_comfort_points_SMVIJ += 1
+    "Лена вытянула у меня блокнот из рук."
+    un "Ну я же просила..."
+    me "Очень красиво получилось. Я не шучу. Почему не продолжила?"
+    show un surprise pioneer at center
+    un "Ты серьезно? Мне не нравится этот стих. Да пока вдоховения нет, если честно."
+    me "Ну тогда не буду отвлекать, удачи."
+    show un smile pioneer at center
+    un "Спасибо. И тебе."
+    hide un with dspr
+    "На этом наш диалог и закончился."
+    "Я развернулся и пошел дальше."
+    
+    
+    
     
     
     $ d2_sport_area_smv_vh = False
@@ -1233,7 +1450,7 @@ label day2_forest_SMVIJ:
     jump day2_map_poisk_SMVIJ
     
 label day2_poisk_SMVIJ_mode2:
-    scene ext_polyana_sunset with dissolve
+    scene ext_polyana_day with dissolve
     "Итак я обошёл все места, но так и не нашёл их."
     if d2_SL_svidanka:
         "Я уже опустил руки и решил ждать их после прогулки со Славей."
@@ -1249,12 +1466,13 @@ label day2_poisk_SMVIJ_mode2:
     "ПРОДОЛЖЕНИЕ ДОПИСАТЬ......................"
     $ set_mode_adv()
     stop music fadeout 2
-    "Где же ужин? Может я его пропустил? {w}А нет."
+    "Где же ужин? Может я его пропустил?"
     play sound sfx_dinner_horn_processed
+    extend " А нет."
     th "Ну чтож, пойдем Семён?"
-    scene ext_square_sunset with dissolve
+    scene ext_square_day with dissolve
     $ renpy.pause (2)
-    scene ext_dining_hall_away_sunset with dissolve
+    scene ext_dining_hall_away_day with dissolve
     play music soft_horn fadein 2
     "Возле столовой столпилось много народу во главе с Ольгой Дмитриевной и что-то буйно обсуждали."
     "Что же случилось?"
@@ -1264,7 +1482,7 @@ label day2_poisk_SMVIJ_mode2:
     "Стоит подойти к ним."
     "Немогу сдвинуться с места, очень переживаю, чтоже случилось?"
     th "Так, Семён, соберись, ничего такого. {w}Пошли!"
-    scene ext_dining_hall_near_sunset 
+    scene ext_dining_hall_near_day 
     show mt normal pioneer far at center 
     show sl normal pioneer far at cright
     show el normal pioneer far at cleft 
