@@ -1075,6 +1075,7 @@ label day2_main_SMVIJ_mode2:
         me "Ладно девчонки, удачи."
         "Я решил не мешать и удалился из столовой."
     else:
+        play music music_list["awakening_power"] fadein 1
         show us normal pioneer far at cleft with dissolve
         show dv rage pioneer far at cright with dissolve
         dv "Ты совсем страх потерял?"
@@ -1082,6 +1083,7 @@ label day2_main_SMVIJ_mode2:
         "Мне было все равно на её разговоры, поэтому я просто сел к ним за стол."
         show us surp2 pioneer far at cleft
         "Игнорируя их, я закончил трапезу. {w}Позже, я поспешил удалиться из столовой."
+        stop music fadeout 2
     
     play ambience ambience_camp_center_day fadeout 2 fadein 1 
     scene ext_dining_hall_near_day with dissolve    
@@ -1465,14 +1467,15 @@ label day2_poisk_SMVIJ_mode2:
     "У каждого какое-то есть своё дело."
     "ПРОДОЛЖЕНИЕ ДОПИСАТЬ......................"
     $ set_mode_adv()
+    scene ext_polyana_sunset with dissolve
     stop music fadeout 2
     "Где же ужин? Может я его пропустил?"
     play sound sfx_dinner_horn_processed
     extend " А нет."
     th "Ну чтож, пойдем Семён?"
-    scene ext_square_day with dissolve
+    scene ext_square_sunset with dissolve
     $ renpy.pause (2)
-    scene ext_dining_hall_away_day with dissolve
+    scene ext_dining_hall_away_sunset with dissolve
     play music soft_horn fadein 2
     "Возле столовой столпилось много народу во главе с Ольгой Дмитриевной и что-то буйно обсуждали."
     "Что же случилось?"
@@ -1482,7 +1485,7 @@ label day2_poisk_SMVIJ_mode2:
     "Стоит подойти к ним."
     "Немогу сдвинуться с места, очень переживаю, чтоже случилось?"
     th "Так, Семён, соберись, ничего такого. {w}Пошли!"
-    scene ext_dining_hall_near_day 
+    scene ext_dining_hall_near_sunset
     show mt normal pioneer far at center 
     show sl normal pioneer far at cright
     show el normal pioneer far at cleft 
@@ -1500,6 +1503,10 @@ label day2_poisk_SMVIJ_mode2:
     me "Играть я умею."
     me "Я же сказал, у меня другие планы."
     sl "Да, я тоже не буду у меня тоже планы есть."
+    if d2_SL_svidanka:
+        th "Под планами Славя точно имела ввиду нашу прогулку."
+    else:
+        th "Сама пригласила погулять, а теперь у неё планы."
     show mt smile pioneer far at center
     mt "Странно всё это, ну да ладно."
     mt "Итак, значит все остальные играют?"
@@ -1508,4 +1515,44 @@ label day2_poisk_SMVIJ_mode2:
     "Ребята ответили хором."
     th "Хм, где же Кристина с Лерой? {w}Что до сих пор не вернулись? {w}Странно это, даже очень."
     mt "Ну тогда идем потчевать, итак уже долго тут торчим."
+    play ambience ambience_dining_hall_full fadein 1        
+    scene int_dining_hall_people_sunset with dissolve
+    "Мы вошли в столовую."
+    "Нигде я не видел ни Леры, ни Кристины."
+    th "Надеюсь с ними все хорошо! {w}По крайней мере будет время провести вечер с обитателями данного места."
+    "Я взял еду и принялся выискивать свободный столик."
+    "Свободным столик оказался лишь рядом с Леной и Мику."
+    "Забавно две противоположности за одним столиком."
+    "Ну что же, выбор не велик."
+    show un normal pioneer far at cleft 
+    show mi normal pioneer far at cright 
+    with dissolve
+    me "Можно присяду?"
+    show mi smile pioneer far at cright
+    mi "Конечно-конечно присаживайся, мест больше нету."
+    "Она проговорила это удивительно быстро, я даже подумал что она против, но потом сообразил по её взгляду."
+    me "Как ваш день девочки?"
+    mi "Очень очень очень.... хорошо, вот новую песенку сочинила, хочешь спою как-нибудь? А вообще скучно одной в клубе, эх если бы кто-то вступил. О чем это я? А у тебя как день?"
+    th "Боже, как же быстро."
+    show mi normal pioneer far at cright
+    me "Замечательно, обошёл весь лагерь, теперь знаю его как свои пять пальцев."
+    if d2_LN_pomosh:
+        "Все это время Лена украдкой поглядывала на меня."
+        "Я тоже начал смотреть на неё."
+        "..."
+        show un shocked pioneer far at cleft 
+        un "Что-то не так?"
+        me "Да нет, все хорошо."
+        "Сказал я улыбнувшись."
+        show un smile pioneer far at cleft
+        un "Ну ладно."
+        "Она улыбнулась и продолжила кушать."
+    else:
+        "Все это время Лена просто ела и ничего не говорила."
+        "Скорее всего её обидила ситуация с дверью. {w}Хотя нет, мы же нормально общались перед ужином."
+        "Ладно, пускай кушает, не буду её отвлекать."
+    "Мы закончили трапезу и я вышел проч из столовой."
+    play ambience ambience_camp_center_day fadeout 2 fadein 1
+    scene ext_dining_hall_near_sunset with dissolve
+    
 return
