@@ -1554,5 +1554,21 @@ label day2_poisk_SMVIJ_mode2:
     "Мы закончили трапезу и я вышел проч из столовой."
     play ambience ambience_camp_center_day fadeout 2 fadein 1
     scene ext_dining_hall_near_sunset with dissolve
+    "Посижу немного, а потом схожу на пляж."
+    scene black with dissolve
+    $ renpy.pause(1)
+    scene ext_dining_hall_near_sunset with dissolve
+    "Что-то я засиделся, пора бы уже идти на пляж."
+    if d2_SL_svidanka:
+        th "Так? А что я Славе скажу?"
+        th "О чем мы будем болтать?"
+        "Ладно это не важно, главное что проведу вечер не один."
+    else:
+        "Слава богу я отказался от прогулки. {w}Будет время посидеть - подумать."
+    scene ext_square_sunset with dissolve   
+    $ renpy.pause(1)
+    play ambience ambience_boat_station_day fadeout 2 fadein 1
+    scene ext_beach_sunset with dissolve
+    th "Как же тут красиво. {w}Сидя в пыльном городе я бы никогда не понял что есть красота."
     
 return
