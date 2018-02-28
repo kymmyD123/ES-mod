@@ -4,14 +4,20 @@
     image lineup = "mods/SMVIJPNNN/image/cg/day2/d2_lineup.jpg"
     image d2_mi_pose_smvij_nn = "mods/SMVIJPNNN/image/cg/day2/d2_mi_pose_smvij_nn.png"
     image ext_houses_night = "mods/SMVIJPNNN/image/bg/ext_houses_night.jpg"
+    image plane_dream_int = "mods/SMVIJPNNN/image/bg/plane_dream_int.jpg"
     
     $ Ler_SM = Character(u'Лера', color="99FF99", what_color="E2C778")
     $ Pioners_SMVIJ = Character(u'Пионеры', color ="#009966", what_color = "E2C778")
     $ SILer_SM_together = Character(u'Семён и Лера', color="00cc00", what_color="E2C778")
     
     $ Vlr_SM = Character(u'Кристина', color="660066", what_color="E2C778")
+    $ Devishka_SM = Character(u'Девушка', color="99FF99", what_color="E2C778")
+    $ ya_SMVIJ = Character(u'Я', color ="#009966", what_color = "E2C778")
+    $ Personal_SM = Character(u'Стюардесса', color="660066", what_color="E2C778")
     
     $ sfx_aplauds_miku = "mods/SMVIJPNNN/music/sfx_aplauds_miku.mp3"
+    $ Padenie = "mods/SMVIJPNNN/music/Padenie.mp3"
+    $ airplane_int = "mods/SMVIJPNNN/music/airplane_int.mp3"
     $ sfx_padenie_miku = "mods/SMVIJPNNN/music/sfx_padenie_miku.mp3"
     $ miku_music_piano = "mods/SMVIJPNNN/music/miku_music_piano.mp3"
     $ bus_engine = "mods/SMVIJPNNN/music/bus_engine.mp3"
@@ -1804,6 +1810,9 @@ label day2_poisk_SMVIJ_mode2:
         "Весь процесс не занял большого количества времени, и вскоре она оказалась у меня под боком со стороны стены."
         Ler_SM "Сегодня был тяжелый день. Спокойной ночи."
         me "Спокойной ночи."
+        stop ambience fadeout 2
+        scene black with dissolve
+        $ renpy.pause (2, hard=True)
         
         
         
@@ -1892,7 +1901,58 @@ label day2_poisk_SMVIJ_mode2:
         "Я быстрым шагом дошел до кровати и улегся к Лере."
         Ler_SM "Спокойной ночи."
         me "Сладких снов."
-        
+        stop ambience fadeout 2
+        scene black with dissolve
+        window hide
+        $ renpy.pause (2, hard=True)
+    
+    if ES_Lera_comfort_points_SMVIJ >= ES_girls_comfort_points_SMVIJ:
+        jump SMVIJ_plane_dream
+    else:
+        jump SMVIJ_day3
+label SMVIJ_plane_dream:
+    $ prolog_time()
+    play ambience airplane_int fadein 1
+    scene plane_dream_int with dissolve
+    Devishka_SM "Извините, а вы меня не сфотографируете?"
+    th "Чего она хочет?"
+    Devishka_SM "Молодой человек?"
+    ya_SMVIJ "А? {w}Простите. Да, конечно."
+    "Девушка передала мне телефон с включенной камерой."
+    "Она отстегивает ремень безопасности, встает и принимает позу для фотографии."
+    Devishka_SM "Так нормально?"
+    ya_SMVIJ "В самый раз."
+    "Улыбнувшись сказал я."
+    Personal_SM "Простите, мы заходим на посадку. Не могли бы Вы сесть на своё место?"
+    Devishka_SM "Да мне только на одну минуту. Я обещала фотографию сделать."
+    Personal_SM "Я настаиваю. Сядте, пожалуйста на своё место."
+    Devishka_SM "Пока мы тут разговариваем, я бы уже давно сделала фотографию и села бы на место."
+    "Стюардесса закатила глаза на секунду."
+    Personal_SM "Хорошо. Только быстро."
+    Devishka_SM "Хорошо."
+    "Стюардесса удалилась, скорчив перед этим противную гримассу."
+    Devishka_SM "Вот всегда так. {w}Вы готовы?"
+    ya_SMVIJ "Да, готов."
+    ya_SMVIJ "Птичка вылетит через три..."
+    ya_SMVIJ "Два..."
+    ya_SMVIJ "Од..." with vpunch
+    "Самолет вдруг затрясло и девушка упала на землю."
+    "Тряска была настолько сильной, что я даже выронил телефон из рук."
+    ya_SMVIJ "Девушка, с Вами всё в порядке?"
+    play ambience Padenie fadein 1
+    "На борту поднялась паника. Мы все смотрим в илюминатор."
+    "Там огонь."
+    ya_SMVIJ "Девушка! Пристегнитесь срочно!"
+    scene black with dissolve
+    ya_SMVIJ "Девушка!..."
+    window hide
+    stop ambience fadeout 2
+    jump SMVIJ_day3
+    
+    
+    
+    
+    
         
     
 return
