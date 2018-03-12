@@ -7,6 +7,8 @@
     $ Vlu_SM = Character(u'Пионерка', color="660066", what_color="E2C778")
     $ Vlr_SM = Character(u'Кристина', color="660066", what_color="E2C778")
     
+    $ Pioner_SM = Character(u'Пионер', color="99FF99", what_color="E2C778")
+    
     image bus_410 = "mods/SMVIJPNNN/image/bg/bus_410.jpg"
     image busbus = "mods/SMVIJPNNN/image/bg/busbus.jpg"
     image semen_room_clear = "mods/SMVIJPNNN/image/bg/semens-room.jpg"
