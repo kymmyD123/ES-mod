@@ -1,4 +1,8 @@
 ﻿init:
+	$ day3_map_necessary_done = 0
+	$ day3_map_forest_SMVIJ = False
+	$ day3_map_pirs_SMVIJ = False
+	$ day3_map_stolovaya_SMVIJ = False
     
 
 
@@ -274,13 +278,16 @@ label SMVIJ_day3:
     "Кажется её немного смутила эта фраза."
     "Мы взяли еду и двинулись выбирать столик."
     "Решили направиться к самому дальнему столику, который был у окна."
+    $ renpy.sound.set_volume(0.3)
     play sound sfx_padenie_miku
-    un "Ааай."
+    hide un
+    un "Ааай." with vpunch
     "Я посмотрел на Лену, {w}Она лежала на полу, а вся еда была разбросана по столовой."
     me "Лена ты в порядке?"
     "Оказалось что она споткнулась об ножку стола."
+    $ renpy.sound.set_volume(1)
+    show un sad pioneer at center with dissolve
     un "Д-да, только ушиблась немного. {w}О боже, моя еда..."
-    show un sad pioneer at center
     un "Ничего страшного, попробую попросить ещё."
     me "Ладно, буду ждать тебя за столиком."
     hide un with dissolve
@@ -344,7 +351,7 @@ label SMVIJ_day3:
     "Так и где мне искать Ольгу Дмитриевну?"
     th "Думай, думай, думай..."
     "Точно, наверное у домика лежит."
-    scene ext_dining_hall_away with dissolve
+    scene ext_dining_hall_away_day with dissolve
     $ renpy.pause(1)
     scene ext_square_day with dissolve
     $ renpy.pause(1)
@@ -406,37 +413,131 @@ label SMVIJ_day3:
     sl "Ну что, Семён, мне кажется тебе стоит пойти на сцену и показать нам фокусы."
     me "Прям так сразу? {w}Ну ладно."
     "На репетицию пришли посмотреть много пионеров. {w}Все они сидели на местах и хлопали."
-    th "Какой смысл приходить на репетицию, если вечером все равно все-все увидят? {w}Ладно, пускай."
+    th "Какой смысл приходить на репетицию, если вечером все равно все всё увидят? {w}Ладно, пускай."
     "Славя вышла на сцену и начала представлять следующего выступающего."
     sl "Дамы и господа, а теперь наш волшебник, Семён, покажет нам фокусы, прошу Семён."
     hide sl with dissolve
     th "Черт, сейчас моя очередь. Что же им показывать?"
     Ler_SM "Не волнуйся, мы их удивим."
     "Слова Леры немного успокоили меня, но все равно чего-то меня беспокоило."
-    scene ext_stage_big_day with dissolve
     "Мы вышли на сцену, я представился и решил показать им фокус с левитацией галстука."
     me "А сейчас я заставлю этот галстук летать по сцене."
     me "Сим салабим, ахалай махалай, галстук взлетай."
     "Легким движением рук, я намекнул Лере, что пора начинать."
     "Мой галстук развязался и взлетел вверх, стал левитировать, носиться по сцене."
-    "Со стороны это выглядело великолепно."
+    "Со стороны это должно было выглядеть великолепно."
     "Вдруг я услышал из зала голос одного из пионеров."
     play music soft_horn fadein 1
     "Его фраза очень смутила меня."
     Pioner_SM "Вы разве этого не видите? {w}Вот прям серьезно?"
     "После этой фразы Лера остановилась."
-    th "Что же он имел в виду?"
-    $ renpy.notify ("Продолжение следует.")
-    ""
-    scene black with dissolve
-    stop ambience fadeout 2
-    "Спасибо большое за время, которое вы уделили нашему моду. Нам очень приятно читать ваши отзывы в комментариях."
-    "Мы будем и дальше стараться не разочаровать вас всех."
-    "Спасибо за внимание!"
-    stop music fadeout 2
-    return
+    th "Что же он имеет в виду?"
+	stop music fadeout 1
+	Pioner_SM "Да у него же ширинка растегнута!!"
+	"Десятки пионеров вокруг меня взорвались от смеха."
+	th "Блин, как же неловко..."
+	mt "Так, а ну тихо! {w}Семён, продолжай."
+	"Мысленно я стал благодарить Ольгу Дмитриевну."
+	"Я легким движением руки подал знак Лере, чтобы она продолжала. "
+	"Лера сразу поняла меня и продолжила выступление."
+	"..."
+	"После некоторого времени она возвращается на место и отдает мне гастук."
+	"Я посмотрел в зал и понял, что они всё еще желают продолжения."
+	me "Развязать? Раз плюнуть. Завязать? Да еще проще."
+	"Я подмингнул Лере и на двух руках протянул вперед галстук."
+	"Лера просто хихикнула и сразу приняла мой дар."
+	"Галстук обвивает мою шею. {w}Лера всё делает чётко и быстро."
+	"Настолько чётко, что многие пионеры начали поправлять свои галстуки."
+	"Как только галстук был завязан, мы с Лерой решили, что этого хватит."
+	"Я повернулся к зрителям, а Лера кокетливо присела, подняв один край юбки. {w}Жаль, что такой красоты никто не видел."
+	"После этого мы спускаемся со сцены под рукоплескания зрителей."
+	show sl smile pioneer at center with dissolve
+	sl "Это было прекрасно. Ты молодец, Семён."
+	me "Спасибо, мы старались."
+	show sl surprise at center
+	sl "Кто мы?"
+	th "Эх, язык мой - враг мой."
+	me "Дух, конечно же. Не могу же я один такое сотворить."
+	show sl laugh pioneer at center
+	sl "Ну ты и шутник."
+	show sl normal pioneer at center
+	sl "Ладно, я пойду обсуждать организацию мероприятия, а вы идите. Ты и твой друг. Ой, то есть дух."
+	me "Ахах, спасибо."
+	hide sl with dissolve
+	me "Ну что, до обеда остается время, так что нужно где-то погулять. Пройдемся?"
+	Ler_SM "С радостью!"
+	
+	$ disable_all_zones()
+
+    $ set_zone("dining_hall","day3_dining_hall_SMVIJ")
+    $ set_zone("boat_station","day3_boat_station_SMVIJ")
+    $ set_zone("forest","day3_forest_SMVIJ")
+	
+	jump day3_map_SMVIJ
     
-    
-    
-    
-    
+label day2_map_SMVIJ:
+	if day3_map_necessary_done == 3:
+		jump day3_main_SMVIJ
+	$ show_map()
+	
+	
+label day3_dining_hall_SMVIJ:
+	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False
+		scene ext_stage_normal_day with dissolve
+	if day3_map_forest_SMVIJ == True
+		scene ext_path_day with dissolve
+	if day3_map_pirs_SMVIJ == True
+		scene ext_boat_station_day with dissolve
+	if day3_map_stolovaya_SMVIJ == True
+		scene ext_dining_hall_near_day with dissolve
+		
+		
+	me "Может пойдем в столовую? {w}Скоро обед должен быть уже."
+	play sound sfx_dinner_horn_processed
+	"Не успел я и услышать ответа Леры, как горн прозвучал."
+	Ler_SM "Ты и сам всё слышал."
+	"Лера улыбнулась и пошла впереди."
+	
+	
+	
+	
+	
+	
+	
+label day3_boat_station_SMVIJ:
+	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False
+		scene ext_stage_normal_day with dissolve
+	if day3_map_forest_SMVIJ == True
+		scene ext_path_day with dissolve
+	if day3_map_pirs_SMVIJ == True
+		scene ext_boat_station_day with dissolve
+	if day3_map_stolovaya_SMVIJ == True
+		scene ext_dining_hall_near_day with dissolve
+		
+	"ЗДЕСЬ ТЕКСТ ДЛЯ СТАНЦИИ"
+	
+	
+	
+	
+	
+	
+label day3_forest_SMVIJ:
+	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False
+		scene ext_stage_normal_day with dissolve
+	if day3_map_forest_SMVIJ == True
+		scene ext_path_day with dissolve
+	if day3_map_pirs_SMVIJ == True
+		scene ext_boat_station_day with dissolve
+	if day3_map_stolovaya_SMVIJ == True
+		scene ext_dining_hall_near_day with dissolve
+label day3_main_SMVIJ:
+	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False
+		scene ext_stage_normal_day with dissolve
+	if day3_map_forest_SMVIJ == True
+		scene ext_path_day with dissolve
+	if day3_map_pirs_SMVIJ == True
+		scene ext_boat_station_day with dissolve
+	if day3_map_stolovaya_SMVIJ == True
+		scene ext_dining_hall_near_day with dissolve
+	
+	"ЗДЕСЬ ТЕКСТ ДЛЯ ГЛАВНОЙ ЛИНИИ ПОСЛЕ ПОСЛЕДНЕГО МЕСТА"

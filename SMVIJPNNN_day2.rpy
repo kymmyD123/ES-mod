@@ -15,6 +15,7 @@
     $ ya_SMVIJ = Character(u'Я', color ="#009966", what_color = "E2C778")
     $ Personal_SM = Character(u'Стюардесса', color="660066", what_color="E2C778")
     
+    $ Lena_hit_door = "mods/SMVIJPNNN/music/Lena_hit_door.mp3"
     $ sfx_aplauds_miku = "mods/SMVIJPNNN/music/sfx_aplauds_miku.mp3"
     $ Padenie = "mods/SMVIJPNNN/music/Padenie.mp3"
     $ airplane_int = "mods/SMVIJPNNN/music/airplane_int.mp3"
@@ -455,13 +456,10 @@ label SMVIJPNNN_day2_label1:
     Vlr_SM "Хорошо."
     "Нотка грусти прозвучала в ее ответе."
     mt "Все идите ребята, не смею задерживать вас."
-    scene ext_houses_day with dissolve
-    show Kristy normal pioneer day at center with dissolve
-    "Мы пришли к домикам и тут Лера сказала."
     Ler_SM "Ладно Семён, иди лист проходи, а я с Кристей пойду."
-    hide Kristy normal pioneer day
+    hide Kristy smile pioneer day
     show Kristy shy pioneer day at center 
-    me "Хорошо, удачи вам девочки."
+    me "Хорошо, удачи."
     Vlr_SM "И тебе удачи, Семён."
     hide Kristy shy pioneer day with dissolve
     th "Ну что ж, куда пойдем?"
@@ -686,6 +684,7 @@ label day2_clubs_SMVIJ:
         scene ext_clubs_day with dissolve
     "Я отправился к зданию клубов."
     "Карту я уже знаю наизусть, так что для меня не составит труда дойти туда с закрытыми глазами."
+    play ambience ambience_clubs_inside_day fadein 1
     scene ext_clubs_day with dissolve
     th "Вот я и пришёл. {w}Ну что ж, пойдем знакомиться с гениями робототехники."
     "Так, надеюсь мне не придется вступать к ним в клуб."
@@ -696,7 +695,7 @@ label day2_clubs_SMVIJ:
     "Как я угадал. {w}Для чего им такой робот интересно? {w}На ум лезут только пошлые мысли."
     el "А, ты наверное Семён. Проходи!"
     scene int_clubs_male_day with dissolve
-    play ambience ambience_clubs_inside_day fadein 1
+    
     show el normal pioneer far at cleft
     with dissolve
     el "Знакомься, это Шурик!"
@@ -725,7 +724,7 @@ label day2_clubs_SMVIJ:
     sh "Х-х-хорошо."
     "Он подписал мне обходной и мы вышли из клубов."
     scene ext_clubs_day with dissolve
-    play ambience ambience_boat_station_day fadein 1
+    play ambience ambience_camp_center_day fadein 1
     show sl happy pioneer far at center 
     with dissolve
     sl "Вот такие у нас гении тут."
@@ -787,7 +786,8 @@ label day2_library_SMVIJ:
     "Она не заслуживает такого."
     play ambience ambience_library_day fadein 1
     scene int_library_day with dissolve
-    un "Ой..."
+    play sound Lena_hit_door
+    un "Ой..." with vpunch
     th "Господи, я чуть Лену не убил."
     show un scared pioneer close at center with dissolve
     "Она хотела выходить из библиотеки, а я её дверью ударил."
@@ -850,7 +850,7 @@ label day2_library_SMVIJ:
             stop music fadeout 2
             scene ext_aidpost_day with dissolve
             "Мы подошли с ней к медпункту."
-            "Всю дорогу, Лена смотрела в пол и ничего мне не сказала."
+            "Всю дорогу Лена смотрела в пол и ничего мне не сказала."
             "Она настолько стеснительная, на сколько я себе это и представлял."
             
             
@@ -904,7 +904,7 @@ label day2_library_SMVIJ:
                 me "Да, я же уже подписал обходной."
                 me "До свидания, Виола."
                 cs "Пока, пионер."
-            play ambience ambience_boat_station_day fadein 1
+            play ambience ambience_camp_center_day fadein 1
             scene ext_aidpost_day with dissolve
             
             if d2_med_sv_vh == False :
@@ -929,7 +929,7 @@ label day2_library_SMVIJ:
             "Она выхватила у меня обходной и подписала его."
             mz "А теперь вали."
             me "А зачем мне тут оставаться? {w}Бывай."
-            play ambience ambience_boat_station_day fadein 1
+            play ambience ambience_camp_center_day fadein 1
             scene ext_library_day with dissolve
             "Как же она меня бесит."
             
@@ -1005,7 +1005,7 @@ label day2_aidpost_SMVIJ:
     me "Хорошо, я пойду."
     cs "Пока, пионер."
     me "До свидания, Виола."
-    play ambience ambience_boat_station_day fadein 1
+    play ambience ambience_camp_center_day fadein 1
     scene ext_aidpost_day with dissolve
     "Фух, что вообще тут происходит?"
     "Ладно."
@@ -1523,6 +1523,8 @@ label day2_poisk_SMVIJ_mode2:
     "Тут очень много незнакомых мне людей, которые не играют ключевую роль, но как мне кажется - Кристина в моём случае как раз таки странный и ключевой персонаж."
     "Не хотелось бы уходить из этого лагеря, а впрочем ладно. У меня ещё целых 5 дней, надо насладиться вдоволь."
     "Интересно, какое задание у Леры и Кристины, не уж то они ещё на задании, вряд ли, но вполне возможно."
+    $ sunset_time()
+    $ persistent.sprite_time = "sunset"
     scene ext_polyana_sunset with dissolve
     stop music fadeout 2
     "Где же ужин? Может я его пропустил?"
