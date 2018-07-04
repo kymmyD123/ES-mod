@@ -3,6 +3,7 @@
 	$ day3_map_forest_SMVIJ = False
 	$ day3_map_pirs_SMVIJ = False
 	$ day3_map_stolovaya_SMVIJ = False
+	$ ES_Lena_food_day3 = False
     
 
 
@@ -299,6 +300,7 @@ label SMVIJ_day3:
     "Печально, что же делать?"
     menu:
         "Отдать Лене свою еду":
+			$ ES_Lena_food_day3 == True
             $ ES_Lena_comfort_points_SMVIJ += 1
             me "Лена не расстраивайся, держи мою порцию."
             show un surprise pioneer at center
@@ -482,13 +484,13 @@ label day2_map_SMVIJ:
 	
 	
 label day3_dining_hall_SMVIJ:
-	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False
+	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False:
 		scene ext_stage_normal_day with dissolve
-	if day3_map_forest_SMVIJ == True
+	if day3_map_forest_SMVIJ == True:
 		scene ext_path_day with dissolve
-	if day3_map_pirs_SMVIJ == True
+	if day3_map_pirs_SMVIJ == True:
 		scene ext_boat_station_day with dissolve
-	if day3_map_stolovaya_SMVIJ == True
+	if day3_map_stolovaya_SMVIJ == True:
 		scene ext_dining_hall_near_day with dissolve
 		
 		
@@ -497,6 +499,60 @@ label day3_dining_hall_SMVIJ:
 	"Не успел я и услышать ответа Леры, как горн прозвучал."
 	Ler_SM "Ты и сам всё слышал."
 	"Лера улыбнулась и пошла впереди."
+	scene ext_square_day with dissolve
+	$ renpy.pause (1)
+	scene ext_dining_hall_near_day with dissolve
+	"Вокруг столовой уже народ, все хотят кушать."
+	"Люди то и делают, что пытаются вместиться в узкие двери столовой. {w}Мы решили сделать также."
+	Ler_SM "Ну и сколько народу же..."
+	me "Угу."
+	"Постарался я сделать это как можно тише, чтобы слышала только она."
+	"Большая часть пионеров зашла в столовую, скоро и наша очередь."
+	th "О, вот и она."
+	"Пропуская вперед Леру, мы зашли в столовую."
+	play ambience ambience_dining_hall_full fadeout 1 fadein 2
+	scene int_dining_hall_people_day with dissolve
+	"Осталось теперь только дождаться очереди на раздачу. Благо она движется довольно быстро."
+	"Взяв свой поднос, я прошел к столику у окна, где встретил Кристину."
+	show Kristy normal pioneer day at center with dissolve
+	Vlr_SM "Доброе утро."
+	me "Доброе."
+	Ler_SM "Доброе утро, Кристина."
+	hide Kristy normal pioneer day with dissolve
+	"Девочки сели вдвоём, ближе друг к другу. Я поделился с Лерой своей порцией, что сделала и Кристина."
+	"После странного взгляда друг на друга, первой опустила глаза Кристина, показывая некоторое пренебрежение, однако после она покрылась румянцем."
+	th "Ну и странная же она, эта Кристина."
+	"Решив не отвлекаться на подобного рода вещи, я решил продолжить трапезу."
+	
+	if ES_Lena_food_day3 == True:
+		"Тут к нашему столу подошла Лена."
+		show un shy pioneer at center with dissolve
+		un "Семён, спасибо тебе большое за сегодня, ты меня очень выручил."
+		me "Что ты, Лена, это не проблема. Всегда пожалуйста."
+		un "Ну тогда я пойду, меня там ждут."
+		me "Да, конечно."
+		hide un with dissolve
+		"Как только Лена ушла, на меня упали взгляды Леры и Кристины."
+		Ler_SM "И как же ты ей помог?"
+		me "На завтраке она обранила свой поднос с едой, а я просто поделился с ней."
+		"Кристина просто ухмыльнулась, глядя на то, как я покрываюсь каплями пота."
+		Ler_SM "Ну ладно, с кем не бывает."
+		"Лера продолжила беседу с Кристиной, но я не концентрировал своё внимание на ней, это их дела, пусть обсуждают."
+	"Быстро закончив с едой, я сказал, что подожду Леру."
+	Ler_SM "Хорошо, мы уже почти закончили."
+	"Это правда, у них остался только чай, который Лера попивает из трубочки, чтобы не привлекать большое количество внимания."
+	"..."
+	"Спустя какое-то время, Лера толкает меня в плечо и говорит, что мы можем идти дальше."
+	me "Хорошо, дай я отнесу подносы, и мы пойдем."
+	Ler_SM "Да, хорошо."
+	"Взяв подносы, я отнес их на мойку, а после взглядом позвал Леру на улицу."
+	play ambience ambience_camp_center_day fadeout 1 fadein 2
+	scene ext_dining_hall_near_day with dissolve
+	Ler_SM "Ну я и наелась. Теперь точно можем продолжать."
+	"Лера всегда ела не много, так что не удивительно, что она наелась всего одной половиной полноценной порции."
+	Ler_SM "Ну так что, куда пойдем дальше?"
+	
+	
 	
 	
 	
@@ -505,13 +561,13 @@ label day3_dining_hall_SMVIJ:
 	
 	
 label day3_boat_station_SMVIJ:
-	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False
+	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False:
 		scene ext_stage_normal_day with dissolve
-	if day3_map_forest_SMVIJ == True
+	if day3_map_forest_SMVIJ == True:
 		scene ext_path_day with dissolve
-	if day3_map_pirs_SMVIJ == True
+	if day3_map_pirs_SMVIJ == True:
 		scene ext_boat_station_day with dissolve
-	if day3_map_stolovaya_SMVIJ == True
+	if day3_map_stolovaya_SMVIJ == True:
 		scene ext_dining_hall_near_day with dissolve
 		
 	"ЗДЕСЬ ТЕКСТ ДЛЯ СТАНЦИИ"
@@ -522,22 +578,22 @@ label day3_boat_station_SMVIJ:
 	
 	
 label day3_forest_SMVIJ:
-	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False
+	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False:
 		scene ext_stage_normal_day with dissolve
-	if day3_map_forest_SMVIJ == True
+	if day3_map_forest_SMVIJ == True:
 		scene ext_path_day with dissolve
-	if day3_map_pirs_SMVIJ == True
+	if day3_map_pirs_SMVIJ == True:
 		scene ext_boat_station_day with dissolve
-	if day3_map_stolovaya_SMVIJ == True
+	if day3_map_stolovaya_SMVIJ == True:
 		scene ext_dining_hall_near_day with dissolve
 label day3_main_SMVIJ:
-	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False
+	if day3_map_forest_SMVIJ == False and day3_map_stolovaya_SMVIJ == False and day3_map_pirs_SMVIJ == False:
 		scene ext_stage_normal_day with dissolve
-	if day3_map_forest_SMVIJ == True
+	if day3_map_forest_SMVIJ == True:
 		scene ext_path_day with dissolve
-	if day3_map_pirs_SMVIJ == True
+	if day3_map_pirs_SMVIJ == True:
 		scene ext_boat_station_day with dissolve
-	if day3_map_stolovaya_SMVIJ == True
+	if day3_map_stolovaya_SMVIJ == True:
 		scene ext_dining_hall_near_day with dissolve
 	
 	"ЗДЕСЬ ТЕКСТ ДЛЯ ГЛАВНОЙ ЛИНИИ ПОСЛЕ ПОСЛЕДНЕГО МЕСТА"
