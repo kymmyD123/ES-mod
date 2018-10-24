@@ -7,7 +7,7 @@
     $ ES_Lena_food_day3 = False
     $ power_vist = "mods/SMVIJPNNN/music/power_vist.mp3"
     image stage_day_big = "mods/SMVIJPNNN/image/bg/stage_day_big.jpg"
-	$ sfx_applaud_stage_smvij = "mods/SMVIJPNNN/music/sfx_applaud_stage_smvij.mp3"
+    $ sfx_applaud_stage_smvij = "mods/SMVIJPNNN/music/sfx_applaud_stage_smvij.mp3"
     
 
 
@@ -624,7 +624,7 @@ label SMVIJ_day3:
     play music power_vist fadein 1
     me "И так, всем добрый вечер! Привет Совёнок!"
     "Я поднял руку с микрофоном в небо, вот только тишина стала ответом на мои действия."
-	play sound sfx_applaud_stage_smvij
+    play sound sfx_applaud_stage_smvij
     "Однако через несколько секунд зал сообразил, что надо делать."
     "Аплодисменты полились рекой, все начали свистеть и кричать."
     me "Вот так и надо, а то что такие кислые?"
@@ -637,7 +637,7 @@ label SMVIJ_day3:
     th "Что же в таких ситуациях делают люди? {w}. {w}. {w}."
     th "Точно!"
     me "Ну же! Поддержите меня и остальных, кто будет здесь выступать! Давайте же, покажите мне то, на что способны вы все вместе."
-	play sound sfx_applaud_stage_smvij
+    play sound sfx_applaud_stage_smvij
     "Зал после моих фраз опять загремел."
     me "Вот так и надо! И даже когда я уйду с этой сцены, я хочу, чтобы вы делали так же для каждого выступающего, договорились?"
     "Весь зал хором выдал утверждение."
@@ -704,7 +704,7 @@ label SMVIJ_day3:
     me "Ну что, все поверили? {w}Отлично."
     me "На этом моё выступление заканчивается, но я надеюсь на то, что мы еще увидимся."
     me "Моей работы тут было мало, поэтому прошу вас проводить Леру теплыми и громкими аплодисментами."
-	play sound sfx_applaud_stage_smvij
+    play sound sfx_applaud_stage_smvij
     "Зал встал и аплодировал ей стоя."
     "Лера покланилась публике, но не успела она принять вертикальное положение, как слезы с её щеки капнули на старый пол сцены."
     Ler_SM "Спасибо..."
@@ -1020,6 +1020,8 @@ label SMVIJ_day3:
     Devishka_SM "Это не интересно."
     scene black with dissolve
     stop ambience fadeout 5
+    
+    jump SMVIJ_day4
     
     
     
